@@ -1,0 +1,396 @@
+#autor: Robert Bembenik, Grzegorz Protaziuk
+#Grupowanie: metoda partycjonuj?ca, hierarchiczna, g?sto?ciowa
+
+
+#################################
+#metoda partycjonująca - kmeans #
+#################################
+
+#ustawienie katalogu roboczego
+#setwd('e:\\data');
+
+install.packages("dbscan")
+#install.packages("fpc") #Flexible Procedures for Clustering
+#install.packages("factoextra")
+library(dbscan)
+library(fpc)
+library(cluster)
+library(factoextra)
+
+set.seed(7777)
+iris2 = iris[,-5]
+iris2
+
+?kmeans
+iris2.kmeans = kmeans(iris2,3, iter.max = 20, nstart=20)
+
+#pozyskanie informacji nt. grupowania
+print(iris2.kmeans)
+print(iris2.kmeans$iter)
+print(iris2.kmeans$centers)
+print(iris2.kmeans$cluster)
+
+#porównianie uzykanego grupowania z grupowaniem wzorcowym wyznaczonym przez atrybut klasy
+table(iris$Species,iris2.kmeans$cluster)
+
+#Wizualizacja grupowania 
+plot(iris2[1:2], col = iris2.kmeans$cluster)
+
+#dodanie centrów grup
+?points
+points(iris2.kmeans$centers[,1:2], col = 1:3, pch = 8, cex=2)
+
+#### skalowanie danych
+?scale
+irisScale <- scale(iris2, center = FALSE)
+irisScale <- as.data.frame(irisScale)
+summary(irisScale)
+
+iris2.kmeansS = kmeans(irisScale,3, iter.max = 20,nstart = 20)
+print(iris2.kmeansS)
+table(iris$Species,iris2.kmeansS$cluster)
+
+## wielokrotne wykonanie grupowania może zwracać różne rezultaty
+#ustawienie siatki rysowania wykresów 2x2
+
+algs = c("Hartigan-Wong", "Lloyd", "Forgy","MacQueen")
+
+par(mfrow = c(2, 2))
+#set.seed(1)
+for(i in 1:4)
+{
+  iris2.kmeansS = kmeans(iris2,3,nstart = 1, algorithm = algs[i] )
+  #drukuj wykres
+  plot(iris2[1:2], col = iris2.kmeansS$cluster, 
+       main = paste(iris2.kmeansS$tot.withinss, algs[i]), 
+       xlab = "", ylab = "")
+  points(iris2.kmeansS$centers[,1:2], col = 1:3, pch = 8, cex=2)
+}
+#ustawienie siatki rysowania wykresów 1x1
+par(mfrow = c(1, 1))
+
+#######################################################
+# znajdowanie optymalnej liczby grup - metoda 'łokcia'#
+#######################################################
+
+# Inicjalizuj całkowita sume bledu kwadratowego: wss
+wss <- 0
+# Od 1 do 15 grup
+for (i in 1:15) 
+{
+  km.out <- kmeans(irisScale, centers = i, nstart=20)
+  # Zapisz całkowita sume bledu kwadratowego do zmiennej wss
+  wss[i] <- km.out$tot.withinss
+}
+
+# Narysuj całkowita sume bledu kwadratowego wzgledem liczby grup
+plot(1:15, wss, type = "b",  xlab = "Liczba grup", ylab = "Suma bledu kwadratowego wewnatrz grup")
+
+####################################
+# PAM - partitioning around medoids#
+####################################
+
+# ustalenie optymalnej liczby grup
+fviz_nbclust(iris2, pam, method = "silhouette")+theme_classic()
+
+#podział na 2 grupy
+pam.res <- pam(iris2, 2)
+
+# wydrukowanie wyników grupowania z informacją o tym które obiekty stanowią centra utworzonych grup
+print(pam.res)
+
+#dodanie do zbioru danych informacji o przynależności obiektów do utworzonych grup
+iris_clus<-cbind(iris2, pam.res$cluster)
+head(iris_clus)
+
+#wyświetlenie informacji o centrach grup
+print(pam.res$medoids)
+
+#wyświetlenie wektora przynależności do grup
+pam.res$clustering
+
+#wizualizacja wynik?w
+fviz_cluster(pam.res,
+             palette = c("#00AFBB", "#FC4E07"), # paleta kolor?w
+             ellipse.type = "t", # elipsa koncentracji
+             repel = TRUE, # Unika nakładania się napisów (spowalnia)
+             ggtheme = theme_light() #kolor tła
+)
+
+
+#########################################################
+#           Porównanie metod grupowania                 #
+#########################################################
+
+?eclust
+#alternatywne wywołanie algorytmu kmeans
+km_alt<-eclust(iris2, "kmeans", k=3, graph=FALSE)
+fviz_silhouette(km_alt, palette="jco")
+
+silinfo<-km_alt$silinfo
+names(silinfo)
+#długości wsk. sylwetkowego dla każdej obserwacji
+head(silinfo$widths[,1:3],10)
+#długości wsk. sylwetkowego dla każdej grupy
+silinfo$clus.avg.widths
+#średnia długość wsk. sylw.
+silinfo$avg.width
+
+#Porównanie wyniku grupowania do klas w danych wejściowych
+table(iris$Species, km_alt$cluster)
+
+#wskażnik Rand
+# The corrected Rand index provides a measure for assessing the similarity between
+# two partitions. Its range is -1 (no agreement) to 1 (perfect agreement).
+
+species <- as.numeric(iris$Species)
+clust_stats<-cluster.stats(d=dist(iris2), species, km_alt$cluster)
+#clust_stats
+clust_stats$corrected.rand
+
+#wskaźnik Rand dla grupowania alg. PAM
+pam.res <- eclust(iris2, "pam", k = 3, graph = FALSE)
+table(iris$Species, pam.res$cluster)
+cl_stats_pam<-cluster.stats(d = dist(iris2), species, pam.res$cluster)
+cl_stats_pam$corrected.rand
+
+############################
+# grupowanie hierarchiczne #
+############################
+
+# próbka danych w celu demonstracyjnym
+idx <- sample(1:nrow(iris), 50)
+irisSample <- iris[idx,1:4]
+
+?hclust
+#wyliczenie macierzy odległości/niepodobieństwa
+?dist
+distM = dist(irisSample, method='euclidean')
+distT = as.matrix(distM)
+dim(distT)
+distT[1:5,1:5]
+
+#wykonanie grupowania hierarchicznego dla różnych metod wyliczenia
+iris2.hc_complete <- hclust(distM, method="complete")
+iris2.hc_single <- hclust(distM, method="single")
+iris2.hc <- hclust(distM, method="average")
+iris2.hc_centroid <- hclust(distM, method="centroid")
+
+#wydruk dendogramów dla różnych grupowań
+?plot
+par(mfrow=c(2,2))
+plot(iris2.hc, hang = -1, labels=iris$Species[idx])
+rect.hclust(iris2.hc, k=3, border=2:4)
+
+plot(iris2.hc_complete, hang = -1, labels=iris$Species[idx])
+rect.hclust(iris2.hc_complete, k=3, border=2:4)
+
+plot(iris2.hc_single, hang = -1, labels=iris$Species[idx])
+rect.hclust(iris2.hc_single, k=3, border=2:4)
+
+plot(iris2.hc_centroid, hang = -1, labels=iris$Species[idx])
+rect.hclust(iris2.hc_centroid, k=3, border=2:4)
+par(mfrow=c(1,1))
+#utworzenie grup
+?cutree
+iris2.hc.groups <- cutree(iris2.hc, k=3)
+#iris2.hc.groups
+
+#porównianie uzykanego grupowania z grupowaniem wzorcowym wyznaczonym przez atrybut klasy
+table(iris$Species[idx], iris2.hc.groups)
+
+
+###########################################
+# grupowanie gestosciowe: algorytm dbscan #
+###########################################
+
+?dbscan
+#dobór parametrów
+
+# The idea is to calculate the average of the distances of every point to its k nearest
+# neighbors. The value of k will be specified by the user and corresponds to MinPts.
+# Next, these k-distances are plotted in an ascending order. The aim is to determine
+# the ?knee?, which corresponds to the optimal eps parameter.
+# A knee corresponds to a threshold where a sharp change occurs along the k-distance
+# curve.
+dbscan::kNNdistplot(iris2, k=5)
+abline(h=0.5, lty="dashed")
+
+# wykonanie algorytmu dbscan
+iris2.dbscan_eps0.5 <- dbscan::dbscan(iris2, eps=0.5, minPts=5)
+
+#porównianie uzykanego grupowania z grupowaniem wzorcowym wyznaczonym przez atrybut klasy
+#grupa 0 oznacza szum
+table(iris$Species, iris2.dbscan_eps0.5$cluster)
+
+iris2.dbscan_eps0.4 <- dbscan::dbscan(iris2, eps=0.4, minPts=5)
+table(iris$Species, iris2.dbscan_eps0.4$cluster)
+
+# wizualizacja grupowania
+#print(iris2.dbscan_eps0.5$cluster)
+
+
+plot(iris2.dbscan_eps0.4, iris2[c(1,2)])
+?plotcluster
+plotcluster(iris2,iris2.dbscan_eps0.4$cluster)
+
+###################
+
+km<-kmeans(iris2,3)
+single_iris<-hclust(dist(iris2),method="single")
+hc_single<-cutree(single_iris, k=3)
+
+complete_iris<-hclust(dist(iris2),method="complete")
+hc_complete<-cutree(complete_iris, k=3)
+
+#cluster validation statistics from the fpc package
+cs<-cluster.stats(dist(iris2), km$cluster)
+cs[c("within.cluster.ss","avg.silwidth")]
+
+#  the within.cluster.ss measurement stands for the within clusters sum of
+# squares, and avg.silwidth represents the average silhouette width. The within.cluster.ss
+# measurement shows how closely related objects are in clusters; the smaller the value, the more
+# closely related objects are within the cluster. On the other hand, a silhouette is a measurement
+# that considers how closely related objects are within the cluster and how clusters are separated
+# from each other. The silhouette value usually ranges from 0 to 1; a value closer to 1 suggests
+# the data is better clustered.
+
+sapply(list(kmeans<-km$cluster, hc_single<-hc_single, hc_complete<-hc_complete), 
+       function(c) cluster.stats(dist(iris2),c)[c("within.cluster.ss","avg.silwidth")])
+
+###########################################################
+# Case study - grupowanie danych z sieci społecznosciowej #
+###########################################################
+
+download.file('http://staff.ii.pw.edu.pl/~rbembeni/dane/social_network_data.csv','social_network_data.csv')
+teens <- read.csv("social_network_data.csv")
+
+## Eksploracja i przygotwanie danych
+####################################
+
+str(teens)
+View(teens)
+summary(teens)
+
+# sprawdzenie brakujacych wartosci dla zmiennej female
+table(teens$gender)
+table(teens$gender, useNA = "ifany")
+
+# sprawdzenie statystyk dla zmiennej age
+summary(teens$age)
+
+# eliminacja odstajacych danych dla zmiennej age
+teens$age <- ifelse(teens$age >= 13 & teens$age < 20, teens$age, NA)
+
+summary(teens$age)
+
+# przypisanie brakujacych wartosci gender do "unknown"
+teens$female <- ifelse(teens$gender == "F" & !is.na(teens$gender), 1, 0)
+teens$no_gender <- ifelse(is.na(teens$gender), 1, 0)
+
+# sprawdzenie danych po przekodowaniu
+table(teens$gender, useNA = "ifany")
+table(teens$female, useNA = "ifany")
+table(teens$no_gender, useNA = "ifany")
+
+# sprawdzeniie sredniego wieku
+mean(teens$age) # nie dziala
+mean(teens$age, na.rm = TRUE) # dziala
+
+# wyliczenie sredniego wieku dla grup
+?aggregate
+aggregate(data = teens, age ~ gradyear, mean, na.rm = TRUE)
+
+# utworzenie wektora ze srednim wiekiem dla kazdego roku ukonczenia, powtarzane dla osoby
+?ave
+ave_age <- ave(teens$age, teens$gradyear,
+               FUN = function(x) mean(x, na.rm = TRUE))
+
+teens$age <- ifelse(is.na(teens$age), ave_age, teens$age)
+
+
+# sprawdzenie podsumowania wynikow, aby upewnic sie, ze brakujace wartosci zostaly wyeliminowane
+summary(teens$age)
+
+## Trenowanie modelu na przygotowanych danych
+#############################################
+
+interests <- teens[5:40]
+interests_z <- as.data.frame(lapply(interests, scale))
+
+set.seed(2345)
+teen_clusters <- kmeans(interests_z, 5)
+
+## Ewaluacja modelu, sprawdzenie wielkosci grup
+
+teen_clusters$size
+
+# sprawdzenie centrow grup
+teen_clusters$centers
+
+## Analiza modelu
+#################
+
+# zastosowanie ID grup do oryginalnej ramki danych
+teens$cluster <- teen_clusters$cluster
+View(teens)
+
+# sprawdzenie pierwszych 5 rekordow
+teens[1:5, c("cluster", "gender", "age", "friends")]
+
+# srednia wieku wg grupy
+aggregate(data = teens, age ~ cluster, mean)
+
+# proporcja kobiet wg grup
+aggregate(data = teens, female ~ cluster, mean)
+
+# srednia liczba znajomych wg grup
+aggregate(data = teens, friends ~ cluster, mean)
+
+
+#############
+# Zadanie 1 #
+#############
+#pokemony
+#opis: https://www.kaggle.com/abcsds/pokemon
+download.file('http://staff.ii.pw.edu.pl/~rbembeni/dane/Pokemon.csv','Pokemon.csv')
+pokemon <- read.csv("Pokemon.csv")
+
+
+#############
+# Zadanie 2 #
+#############
+
+# Cel zadania to znalezienie jak najlepszego grupowania zbioru "cardiotocogram", bez informacji o klasach.
+# Do oceny grupowania należy użyć grupowania wzorcowego wyznaczonego przez atrybut "CLASS"
+# oraz funkcji accuracyCalc. Im wyższa wartość zwrócona przez tę fukcję tym lepsze grupowanie.
+# Uzyskane grupowanie nie może zawierać więcej niż 15 grup. 
+
+#funkcja do wyliczenia dokładności
+accuracyCalc <- function(confTbl, startCol)
+{
+  corr = 0;
+  for(i in startCol:ncol(confTbl))
+  {
+    corr = corr + max(confTbl[,i])  
+  }
+  accuracy = corr/sum(confTbl)
+  accuracy  
+}
+
+#zbiór danych:
+#opis: http://archive.ics.uci.edu/ml/datasets/Cardiotocography 
+download.file('http://staff.ii.pw.edu.pl/~gprotazi/dydaktyka/dane/cardioto_noClass_corr.csv','cardioto_noClass_corr.csv')
+ctg_noClass <- read.csv("cardioto_noClass_corr.csv",row.names = 1)
+
+download.file('http://staff.ii.pw.edu.pl/~gprotazi/dydaktyka/dane/cardioto_all_corr.csv','cardioto_all_corr.csv')
+ctg_all <- read.csv("cardioto_all_corr.csv",row.names = 1)
+ctg_noClass <- ctg_all[,c(-22,-23)]
+
+
+#uproszczony przykład
+distC = dist(ctg_noClass)
+card.kmeans = kmeans(distC,10)
+res3 = table(ctg_all$CLASS,card.kmeans$cluster )
+res3
+accuracyCalc(res3,1)

@@ -1,0 +1,88 @@
+
+		<!DOCTYPE html>
+		<head>
+		<title>Getting Started with LOD Expressions</title>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/script.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		</head>
+		<body onscroll="OnScroll()">
+		<div class="container-fluid" style="height:100%;">
+			<!-- Top padding -->
+			<div class="row toppad"></div>
+			<div class="row" id="hdhd">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head">
+							<span class="title">
+							<img src="imgs/lockupsmall_maroon.png" class="title"/> <a href="../welcome.html">Getting Started with LOD Expressions</a>
+							</span>
+							<div class="navnp"><a href=".html"> </a></div>
+							<div class="navnp"><a href="averagepriceperhost_423.html"><span class="fa fa-angle-left"></span> previous </a><span id="bothnp">  </span></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row" id="hiddenspacer" style="display:none;">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head" style="margin-bottom:20px;">
+							<h1>&nbsp;</h1>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+			<!-- Start of content -->
+				<div class="row">
+					<!-- Side navigation -->
+					<div class="col-xs-3" style="padding:0px">
+						<div class="col-xs-12 block nav">
+						<div class="col-xs-12">		<div class="row sec" id="sec182">
+								<div class="sectitle"><h3>Section 1: LOD Basics</h3></div><a href="percentofglobaltotal_414.html" class="seclist">Percent of Global Total</a><br/>		</div>		<div class="row sec" id="sec184">
+								<div class="sectitle"><h3>Section 2: Fixed</h3></div><a href="avgscoreperzip_341.html" class="seclist">Avg Score per Zip</a><br/><a href="avgpricebypropertytype_344.html" class="seclist">Avg Price by Property Type</a><br/>		</div>		<div class="row sec" id="sec185">
+								<div class="sectitle"><h3>Section 3: Fixed Cohorts</h3></div><a href="firstreviewdate_343.html" class="seclist">First Review Date</a><br/><a href="firstinspectiondate_352.html" class="seclist">First Inspection date</a><br/>		</div>		<div class="row sec" id="sec186">
+								<div class="sectitle"><h3>Section 4: Fixed Binning Aggregates</h3></div><a href="inspectionsperrestaurant_380.html" class="seclist">Inspections per Restaurant</a><br/><a href="listingsperhost_384.html" class="seclist">Listings per Host</a><br/>		</div>		<div class="row sec" id="sec187">
+								<div class="sectitle"><h3>Section 5: Include</h3></div><a href="averagesalespercustomer_422.html" class="seclist">Average Sales per Customer</a><br/><a href="averagepriceperhost_423.html" class="seclist">Average Price per Host</a><br/>		</div>		<div class="row sec" id="sec188">
+								<div class="sectitle"><h3>Section 6: Exclude</h3></div><a href="excluderoomtypeoncolor_424.html" class="seclist curchal">Exclude Room Type on Color</a><br/>		</div>		<br/>
+						</div>
+						</div>
+					</div>
+					<!-- Challenges and steps -->
+					<div class="col-xs-9 cont">
+						<div class="col-xs-12">
+							<div class="row current block shadow">
+								<span class="currenttitle">
+									Exclude Room Type on Color
+									<input class="btn btn-default switch" type="button" onClick="showHide();" id ="switch" value="View Solution">
+								</span>
+							</div>
+							<div id="challenge"  style="display:block;">
+								<div class="row block shadow step">
+								<font size="5">Create a calculation to color by the Total Number of Reviews per neighborhood, ignoring [Room Type]:</font><div><font size="5"><br></font></div><div><img src="imgs/6.1s.png"></div>
+								</div>
+							</div>
+							<!-- Start php step loop -->
+							<div id="solution"  style="display:none;">			<div class="row block shadow step">
+										<span class="circle" id="step1254num">1</span><span class="steptitle" id="step1254title"> Create a calculation called "Number of Reviews Excluding Room Type"</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/61.1.gif" />			<br/><blockquote><p class="calc"><span class="darkb">{</span><span class="darkb">EXCLUDE</span> <span class="orange">[Room Type]</span> : <span class="blue">SUM</span>(<span class="orange">[Number of Reviews]</span>) <span class="darkb">}</span></p></blockquote>			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1255num">2</span><span class="steptitle" id="step1255title"> Drag [Number of Reviews Excluding Room Type] on to Color in the Marks Card</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/61.2.gif" />			</div>		</div>
+							<!-- End php step loop -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		</body>
+		</html>
+		

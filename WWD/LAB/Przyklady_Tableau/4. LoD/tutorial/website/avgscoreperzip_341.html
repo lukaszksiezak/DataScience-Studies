@@ -1,0 +1,88 @@
+
+		<!DOCTYPE html>
+		<head>
+		<title>Getting Started with LOD Expressions</title>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/script.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		</head>
+		<body onscroll="OnScroll()">
+		<div class="container-fluid" style="height:100%;">
+			<!-- Top padding -->
+			<div class="row toppad"></div>
+			<div class="row" id="hdhd">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head">
+							<span class="title">
+							<img src="imgs/lockupsmall_maroon.png" class="title"/> <a href="../welcome.html">Getting Started with LOD Expressions</a>
+							</span>
+							<div class="navnp"><a href="avgpricebypropertytype_344.html">next <span class="fa fa-angle-right"></span> </a></div>
+							<div class="navnp"><a href="percentofglobaltotal_414.html"><span class="fa fa-angle-left"></span> previous </a><span id="bothnp"> | </span></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row" id="hiddenspacer" style="display:none;">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head" style="margin-bottom:20px;">
+							<h1>&nbsp;</h1>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+			<!-- Start of content -->
+				<div class="row">
+					<!-- Side navigation -->
+					<div class="col-xs-3" style="padding:0px">
+						<div class="col-xs-12 block nav">
+						<div class="col-xs-12">		<div class="row sec" id="sec182">
+								<div class="sectitle"><h3>Section 1: LOD Basics</h3></div><a href="percentofglobaltotal_414.html" class="seclist">Percent of Global Total</a><br/>		</div>		<div class="row sec" id="sec184">
+								<div class="sectitle"><h3>Section 2: Fixed</h3></div><a href="avgscoreperzip_341.html" class="seclist curchal">Avg Score per Zip</a><br/><a href="avgpricebypropertytype_344.html" class="seclist">Avg Price by Property Type</a><br/>		</div>		<div class="row sec" id="sec185">
+								<div class="sectitle"><h3>Section 3: Fixed Cohorts</h3></div><a href="firstreviewdate_343.html" class="seclist">First Review Date</a><br/><a href="firstinspectiondate_352.html" class="seclist">First Inspection date</a><br/>		</div>		<div class="row sec" id="sec186">
+								<div class="sectitle"><h3>Section 4: Fixed Binning Aggregates</h3></div><a href="inspectionsperrestaurant_380.html" class="seclist">Inspections per Restaurant</a><br/><a href="listingsperhost_384.html" class="seclist">Listings per Host</a><br/>		</div>		<div class="row sec" id="sec187">
+								<div class="sectitle"><h3>Section 5: Include</h3></div><a href="averagesalespercustomer_422.html" class="seclist">Average Sales per Customer</a><br/><a href="averagepriceperhost_423.html" class="seclist">Average Price per Host</a><br/>		</div>		<div class="row sec" id="sec188">
+								<div class="sectitle"><h3>Section 6: Exclude</h3></div><a href="excluderoomtypeoncolor_424.html" class="seclist">Exclude Room Type on Color</a><br/>		</div>		<br/>
+						</div>
+						</div>
+					</div>
+					<!-- Challenges and steps -->
+					<div class="col-xs-9 cont">
+						<div class="col-xs-12">
+							<div class="row current block shadow">
+								<span class="currenttitle">
+									Avg Score per Zip
+									<input class="btn btn-default switch" type="button" onClick="showHide();" id ="switch" value="View Solution">
+								</span>
+							</div>
+							<div id="challenge"  style="display:block;">
+								<div class="row block shadow step">
+								<font size="5">Find a way to get the average restaurant score per zip code.&nbsp;</font><img src="imgs/2.1starter.jpg">
+								</div>
+							</div>
+							<!-- Start php step loop -->
+							<div id="solution"  style="display:none;">			<div class="row block shadow step">
+										<span class="circle" id="step884num">1</span><span class="steptitle" id="step884title"> Start by creating a calculation that averages the average score to the fixed zip code. Name  it "Average Score by Zip".</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><blockquote><p class="calc"><span class="blue">AVG</span>(<span class="darkb">{</span><span class="darkb">FIXED</span> <span class="orange">[Restaurant Name]</span> : <span class="blue">AVG</span>(<span class="orange">[Score]</span>) <span class="darkb">}</span>)</p></blockquote>			</div>			<div class="row block shadow step">
+										<span class="circle" id="step885num">2</span><span class="steptitle" id="step885title"> Drag the new field "Average Score by Zip" to the color shelf</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/2.1solution.jpg" />			</div>		</div>
+							<!-- End php step loop -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		</body>
+		</html>
+		

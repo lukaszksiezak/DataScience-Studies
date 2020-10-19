@@ -1,0 +1,246 @@
+#DataScience  - data mining 2019z Lab1a
+#Wstępne przetwarzenia i analiza danych
+
+#pakiety
+library(arules)
+
+#####################################
+#wstępne przetwarzanie danych
+#####################################
+#uzupełnianie danych
+
+#przykładowy wektor liczb losowych - funkcja runif
+?runif
+wLos = runif(100,1,10)
+wLos
+#pseudolowy wybór 10 liczb naturlany - funkcja sample
+#ustawienie ziarana generatora
+#set.seed(1234)
+#?sample
+wek2 = sample(100,10)
+
+#dane niekompletne
+#przypisanie wybranym pozycjom wektora wartości specjalnej NA
+wLos[wek2] = NA 
+wLos
+#lista pozycji wektora ze specjalną wartością NA  - użycie funkcji which oraz is.na
+#?which
+#?is.na
+which(is.na(wLos) == TRUE)  
+#which(wLos == NA)# nie daje oczekiwanego wyniku
+
+#kopiowanie danych
+wLos2 <- wLos
+mean(wLos)
+#?mean
+#wyliczenie średniej na podstawie istniejących wartości
+
+srednia = mean(na.omit(wLos)) 
+#srednia1 = mean(wLos, na.rm = TRUE);
+srednia
+
+#uzupełnienie danych - zastąpienie specjalnej wartości NA średnią 
+wLos2[is.na(wLos2)==TRUE] <- mean(na.omit(wLos)) 
+
+#sprawdzenie
+which(is.na(wLos2))
+wLos2
+wLos2 == wLos
+
+##########################################################
+# przykładowyc zbiór danych 
+#zbiór danych AdultUCI jest dostępny m.in. w bibliotece arules
+data("AdultUCI") 
+
+dim(AdultUCI)
+View(AdultUCI)
+
+###########################################################
+
+# selekcja atrybutów i wierszy
+
+#ususnięcie atrubutów z jedną wartością
+#?sapply
+delOneValued <- function(inputData11)
+{
+  res <- c(which(sapply(inputData11, function(x) {length(unique(x))}) == 1));
+  if(length(res) > 0)         
+  {
+    data11 <- inputData11[,-res];
+  }   
+  else
+  {
+    data11 <-inputData11;
+  }
+  data11 
+}
+
+#testowanie
+
+which(sapply(AdultUCI, function(x) {length(unique(x))}) == 1);
+AdultUCI <- delOneValued(AdultUCI)
+
+#dodanie dwóch atrybutów
+AdultUCI$Att1 = 0
+AdultUCI$Att2.Cat = 'cat1'
+colnames(AdultUCI)
+
+which(sapply(AdultUCI, function(x) {length(unique(x))}) == 1);
+AdultUCI <- delOneValued(AdultUCI)
+colnames(AdultUCI)
+
+###########################################################
+#ususnięcie atrubutów z tylko unikalnymi wartościami
+delUniqueValueAtt<- function(inputData11)
+{
+  res <- c(which(sapply(inputData11, function(x) {length(unique(x))}) == nrow(inputData11)));
+  if(length(res) >0)         
+  {
+    data11 <- inputData11[,-res];
+  }   
+  else
+  {
+    data11 <-inputData11;
+  }
+  
+  data11 
+}
+
+#testowanie
+which(sapply(AdultUCI, function(x) {length(unique(x))}) == nrow(AdultUCI))
+
+AdultUCI <- delUniqueValueAtt(AdultUCI)
+
+#dodanie dwóch atrybutów
+AdultUCI$Att1 = sample(nrow(AdultUCI),nrow(AdultUCI));
+AdultUCI$Att2.Cat = sample.int(nrow(AdultUCI))
+
+which(sapply(AdultUCI, function(x) {length(unique(x))}) == nrow(AdultUCI))
+
+AdultUCI <- delUniqueValueAtt(AdultUCI)
+colnames(AdultUCI)
+
+###########################################################
+#usuwanie duplikatów
+#?duplicated
+#?anyDuplicated
+
+which(duplicated(AdultUCI) == TRUE)
+length(which(duplicated(AdultUCI) == TRUE))
+
+AdultUCI.U <- unique(AdultUCI)
+dim(AdultUCI)
+dim(AdultUCI.U)
+
+################################################3
+#wstępna analiza danych
+
+#?summary
+summary(AdultUCI)
+
+#atrybut liczbowy
+summary(AdultUCI$age)
+#odchylenie standardowe
+sd(AdultUCI$age)
+#kwantyle
+quantile(AdultUCI$age)
+
+#decyle
+#?quantile
+quantile(AdultUCI$age, prob = seq(0, 1, length = 11), type = 5)
+#histogram
+hist(AdultUCI$age)
+
+#atrybut nominalny
+#liczba wystąpień poszczególnych wartości dla danego atrybutu
+table(AdultUCI$education) 
+#wizualizacja pokazyjąca rozkład wartości
+pie(table(AdultUCI$"education"))
+barplot(table(AdultUCI$"education"), cex.names=0.7)
+plot(table(AdultUCI$"education"),ylab = "lb wystąpień")
+
+#zapis rysunku do pliku
+#?png
+#png("nazwa_pliku.png", res=80, height=800, width=2400) 
+#pie(table(AdultUCI$"education"))
+#dev.off(); 
+
+
+##############################################
+#dyskretyzacja  - funkcja cut
+#?cut
+
+#podział na przedziały wg zadanych granic
+AdultUCI$age.d  <- ordered(cut(AdultUCI[["age"]], c(15,25,45,65,100)), labels = c("Young", "Middle-aged", "Senior", "Old"))
+
+str(AdultUCI["age.d"])
+
+#podział na przedziały z wykorzystaniem mediany
+AdultUCI$"capital_gain.d" <- ordered(cut(AdultUCI[[ "capital-gain"]], c(-Inf, 0, median(AdultUCI[[ "capital-gain"]][AdultUCI["capital-gain"] > 0 ]),Inf)), labels = c("None", "Low", "High"))
+
+summary(AdultUCI$capital_gain.d)
+
+
+# tabela krzyżowa
+xtabs(formula = ~ age.d + capital_gain.d, data = AdultUCI)
+
+#####################################
+#zamiana atrybutu nominalnego na atrubuty binarne
+
+#ustawienie katalogu roboczego
+setwd('/home/staff/gprotazi/DataScience');
+
+#pobranie przykładowych danych
+download.file('http://archive.ics.uci.edu/ml/machine-learning-databases/car/car.data', 'car.data')
+
+#wczytanie danych
+cars = read.csv("car.data", header = FALSE,
+                col.names = c('buying', 'maint', 'doors', 'persons', 'lug_boot','safety', "category") )
+#struktura danych
+str(cars)
+# pokazanie danych
+View(cars)
+
+#funkcja generująca dodatkowe atrybuty dla każdej wartości podanego atrybutu nominalnego zadanej ramki danych
+genNumericAttrsForFactor = function(dataF, attName)
+{
+  #sprawdzenie typów danych wejściowych  
+  if(is.data.frame(dataF) == FALSE)
+  {
+    print("podany obiekt nie jest ramką danych (dataFrame)");
+    return(dataF);
+  }
+  
+  if(is.character(attName) == FALSE)
+  {
+    print("wartość podana jako nazwa atrybutu nie jest napisem");
+    return(dataF);    
+  }
+  
+  if(is.factor(dataF[[attName]]) == FALSE)
+  {
+    print("podany atrybut nie jest atrybutem o wartościach nominalnych");
+    return(dataF);
+  }
+  
+  #nazwy dla atrubutów
+  attsName = levels(dataF[[attName]]);
+  
+  #utworzenie nowych atrybutów
+  for(name1 in attsName)
+  {    
+    dataF[paste0(attName,'_',name1)] = 0;
+  } 
+  #aktualizacja danych  
+  for( id in 1:nrow(dataF))
+  {
+    dataF[id,paste0(attName,'_',as.character(dataF[id,attName]))] = 1
+  } 
+  
+  dataF
+}
+
+#sprawdzenie funkcji
+cars2 = genNumericAttrsForFactor(cars,'maint')
+View(cars)
+View(cars2)

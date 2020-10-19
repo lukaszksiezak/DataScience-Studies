@@ -1,0 +1,1990 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 10300.17.0728.2252                               -->
+<workbook locale='en_US' source-build='10.3.2 (10300.17.0728.2252)' source-platform='mac' version='10.3' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='airbnblistings.csv+ (Multiple Connections)' inline='true' name='federated.1tlx7k30mkgb1h112efxo15ss034' version='10.3'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='airbnblistings' name='textscan.1u4t7z01jbjtcd11qb18m0g76xkv'>
+            <connection class='textscan' directory='Data/1' filename='airbnblistings.csv' password='' server='' />
+          </named-connection>
+          <named-connection caption='reviews_2015q1' name='excel-direct.0dpgkpg18j79pu1b8v8rk0tfu3f8'>
+            <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='Data/1/reviews_2015q1.xlsx' interpretationMode='0' password='' server='' validate='no' />
+          </named-connection>
+        </named-connections>
+        <relation join='inner' type='join'>
+          <clause type='join'>
+            <expression op='='>
+              <expression op='[airbnblistings.csv].[id]' />
+              <expression op='[Union].[Listing Id]' />
+            </expression>
+          </clause>
+          <relation connection='textscan.1u4t7z01jbjtcd11qb18m0g76xkv' name='airbnblistings.csv' table='[airbnblistings#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype='integer' name='id' ordinal='0' />
+              <column datatype='string' name='street' ordinal='1' />
+              <column datatype='string' name='neighbourhood' ordinal='2' />
+              <column datatype='string' name='city' ordinal='3' />
+              <column datatype='string' name='state' ordinal='4' />
+              <column datatype='real' name='zipcode' ordinal='5' />
+              <column datatype='string' name='market' ordinal='6' />
+              <column datatype='string' name='smart_location' ordinal='7' />
+              <column datatype='string' name='country_code' ordinal='8' />
+              <column datatype='string' name='country' ordinal='9' />
+              <column datatype='real' name='latitude' ordinal='10' />
+              <column datatype='real' name='longitude' ordinal='11' />
+              <column datatype='string' name='property_type' ordinal='12' />
+              <column datatype='string' name='room_type' ordinal='13' />
+              <column datatype='integer' name='accommodates' ordinal='14' />
+              <column datatype='real' name='bathrooms' ordinal='15' />
+              <column datatype='integer' name='bedrooms' ordinal='16' />
+              <column datatype='integer' name='beds' ordinal='17' />
+              <column datatype='string' name='bed_type' ordinal='18' />
+              <column datatype='integer' name='square_feet' ordinal='19' />
+              <column datatype='integer' name='price' ordinal='20' />
+              <column datatype='integer' name='security_deposit' ordinal='21' />
+              <column datatype='integer' name='cleaning_fee' ordinal='22' />
+              <column datatype='string' name='cancellation_policy' ordinal='23' />
+            </columns>
+          </relation>
+          <relation all='true' connection='excel-direct.0dpgkpg18j79pu1b8v8rk0tfu3f8' include-siblings='false' is-recursive='false' name='Union' path='' type='batch-union'>
+            <database-filter>
+              <expression op='='>
+                <expression op='reviews_2015*.xlsx' />
+              </expression>
+            </database-filter>
+            <table-filter />
+            <columns header='yes' outcome='6'>
+              <column datatype='integer' name='Rating' />
+              <column datatype='string' name='Comments' />
+              <column datatype='date' name='Date' />
+              <column datatype='integer' name='Id' />
+              <column datatype='integer' name='Listing Id' />
+              <column datatype='integer' name='Reviewer Id' />
+              <column datatype='string' name='Reviewer Name' />
+              <column datatype='real' name='Subjectivity' />
+              <column datatype='integer' name='Month Diff' />
+              <column datatype='string' name='Path' />
+              <column datatype='string' name='Sheet' />
+            </columns>
+          </relation>
+        </relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[id]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>street</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[street]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>street</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>neighbourhood</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[neighbourhood]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>neighbourhood</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>city</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[city]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>city</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>state</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[state]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>state</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>zipcode</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[zipcode]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>zipcode</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>market</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[market]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>market</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>smart_location</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[smart_location]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>smart_location</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>country_code</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[country_code]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>country_code</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>country</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[country]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>country</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>latitude</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[latitude]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>latitude</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>longitude</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[longitude]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>longitude</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>property_type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[property_type]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>property_type</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>room_type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[room_type]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>room_type</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>accommodates</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[accommodates]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>accommodates</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>bathrooms</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[bathrooms]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>bathrooms</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>bedrooms</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[bedrooms]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>bedrooms</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>beds</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[beds]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>beds</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>bed_type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[bed_type]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>bed_type</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>square_feet</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[square_feet]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>square_feet</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>price</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[price]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>price</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>security_deposit</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[security_deposit]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>security_deposit</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>cleaning_fee</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[cleaning_fee]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>cleaning_fee</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>cancellation_policy</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[cancellation_policy]</local-name>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias>cancellation_policy</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[airbnblistings.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Union]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Rating</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Rating]</local-name>
+            <parent-name>[Union]</parent-name>
+            <remote-alias>Rating</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Comments</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Comments]</local-name>
+            <parent-name>[Union]</parent-name>
+            <remote-alias>Comments</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Date</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[Date]</local-name>
+            <parent-name>[Union]</parent-name>
+            <remote-alias>Date</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Id]</local-name>
+            <parent-name>[Union]</parent-name>
+            <remote-alias>Id</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Listing Id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Listing Id]</local-name>
+            <parent-name>[Union]</parent-name>
+            <remote-alias>Listing Id</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Reviewer Id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Reviewer Id]</local-name>
+            <parent-name>[Union]</parent-name>
+            <remote-alias>Reviewer Id</remote-alias>
+            <ordinal>29</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Reviewer Name</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Reviewer Name]</local-name>
+            <parent-name>[Union]</parent-name>
+            <remote-alias>Reviewer Name</remote-alias>
+            <ordinal>30</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Subjectivity</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Subjectivity]</local-name>
+            <parent-name>[Union]</parent-name>
+            <remote-alias>Subjectivity</remote-alias>
+            <ordinal>31</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Month Diff</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Month Diff]</local-name>
+            <parent-name>[Union]</parent-name>
+            <remote-alias>Month Diff</remote-alias>
+            <ordinal>32</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Path</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Path]</local-name>
+            <parent-name>[Union]</parent-name>
+            <remote-alias>Path</remote-alias>
+            <ordinal>33</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sheet</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Sheet]</local-name>
+            <parent-name>[Union]</parent-name>
+            <remote-alias>Sheet</remote-alias>
+            <ordinal>34</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[:Measure Names]' role='dimension' type='nominal'>
+        <aliases>
+          <alias key='&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:cleaning_fee:qk]&quot;' value='Avg. cleaning fee' />
+          <alias key='&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:security_deposit:qk]&quot;' value='Avg. security deposit' />
+          <alias key='&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:square_feet:qk]&quot;' value='Avg. square feet' />
+        </aliases>
+      </column>
+      <column caption='distance from needle' datatype='real' name='[Calculation_134826536952471552]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='6371 * ACOS &#10;( &#10;SIN(RADIANS([latitude])) * SIN(RADIANS(47.620422)) + &#10;COS(RADIANS([latitude])) * COS(RADIANS(47.620422)) * COS(RADIANS(-122.349358) - RADIANS([longitude])) &#10;)' />
+      </column>
+      <column datatype='date' name='[Date]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='string' name='[city]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+      <column datatype='integer' name='[cleaning_fee]' role='measure' type='quantitative' />
+      <column datatype='string' name='[country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column datatype='string' name='[country_code]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column aggregation='Sum' datatype='integer' name='[id]' role='dimension' type='ordinal' />
+      <column aggregation='Avg' datatype='real' name='[latitude]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+      <column aggregation='Avg' datatype='real' name='[longitude]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+      <column datatype='string' name='[neighbourhood]' role='dimension' type='nominal' />
+      <column aggregation='None' caption='price (bin)' datatype='integer' name='[price (bin)]' role='dimension' type='ordinal'>
+        <calculation class='bin' decimals='1' formula='[price]' peg='0' size='20' />
+      </column>
+      <column datatype='integer' name='[price]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[security_deposit]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[square_feet]' role='measure' type='quantitative' />
+      <column datatype='string' name='[state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column datatype='real' name='[zipcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+      <column-instance column='[cleaning_fee]' derivation='Avg' name='[avg:cleaning_fee:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[price]' derivation='Avg' name='[avg:price:vtavg:qk]' pivot='key' type='quantitative' visual-totals='Avg' />
+      <column-instance column='[security_deposit]' derivation='Avg' name='[avg:security_deposit:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[square_feet]' derivation='Avg' name='[avg:square_feet:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[id]' derivation='CountD' name='[ctd:id:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Date]' derivation='Month' name='[mn:Date:ok]' pivot='key' type='ordinal' />
+      <column-instance column='[price]' derivation='Avg' name='[pcdf:avg:price:qk]' pivot='key' type='quantitative'>
+        <table-calc diff-options='Relative' ordering-type='Rows' type='PctDiff'>
+          <address>
+            <value>-1</value>
+          </address>
+        </table-calc>
+      </column-instance>
+      <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Date]' derivation='Year' name='[yr:Date:ok]' pivot='key' type='ordinal' />
+      <group caption='Action (YEAR(Date),MONTH(Date))' hidden='true' name='[Action (YEAR(Date),MONTH(Date))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[yr:Date:ok]' />
+          <groupfilter function='level-members' level='[mn:Date:ok]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (id)' hidden='true' name='[Action (id)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[id]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (neighbourhood)' hidden='true' name='[Action (neighbourhood)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[neighbourhood]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (price (bin))' hidden='true' name='[Action (price (bin))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[price (bin)]' />
+        </groupfilter>
+      </group>
+      <layout dim-ordering='alphabetic' dim-percentage='0.500648' measure-ordering='alphabetic' measure-percentage='0.499352' show-structure='true' user-set-layout='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:vtavg:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[pcdf:avg:price:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[ctd:id:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[sum:Number of Records:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Poland&quot;' />
+        <semantic-value key='[ZipCode].[Name]' value='%null%' />
+      </semantic-values>
+      <date-options start-of-week='monday' />
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Tableau' />
+    <mapsource inline='true' name='mapa' source-platform='mac' version='10.3'>
+      <connection api-key='pk.eyJ1IjoiYWRhbXMiLCJhIjoiY2ludTl5cXBvMDBvMnZza2x3ZW5mYngxOCJ9.VAPyqnF3_hpyyIcKszCiUQ' class='MapBox' description='Mapbox Streets' full-url='https://api.mapbox.com/v4/{L}/{Z}/{X}/{Y}{D}.png256?access_token=pk.eyJ1IjoiYWRhbXMiLCJhIjoiY2ludTl5cXBvMDBvMnZza2x3ZW5mYngxOCJ9.VAPyqnF3_hpyyIcKszCiUQ' inline='true' layer-separator=',' offline='' port='443' server='api.mapbox.com' service='https' tileset='US/normal' url-format='/v4/{L}/{Z}/{X}/{Y}{D}.png256?access_token=pk.eyJ1IjoiYWRhbXMiLCJhIjoiY2ludTl5cXBvMDBvMnZza2x3ZW5mYngxOCJ9.VAPyqnF3_hpyyIcKszCiUQ' username='' wait-tile-color='#dddddd' />
+      <languages />
+      <layers>
+        <layer display-name='Streets' name='mapbox.streets' show-ui='true' type='features' />
+      </layers>
+      <properties />
+      <map-styles>
+        <map-style display-name='mapa' name='mapa' wait-tile-color='#dddddd'>
+          <map-layer-style name='Streets' request-string='mapbox.streets' />
+        </map-style>
+      </map-styles>
+      <mapsource-defaults version='10.3'>
+        <style>
+          <style-rule element='map-layer'>
+            <format attr='enabled' id='mapbox.streets' value='true' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0' />
+          </style-rule>
+        </style>
+      </mapsource-defaults>
+      <map-attribution copyright-string='About Maps' copyright-url='http://www.tableau.com/mapdata' short-copyright-string='' />
+    </mapsource>
+  </mapsources>
+  <actions>
+    <action caption='Filter 1 (generated)' name='[Action1]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='Neighbourhood' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+    <action caption='Filter 2 (generated)' name='[Action2]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='Price Bins' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+    <action caption='Filter 3 (generated)' name='[Action3]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='avg price MTH' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+    <action caption='Filter 4 (generated)' name='[Action4]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='Map' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+  </actions>
+  <worksheets>
+    <worksheet name='Map'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='airbnblistings.csv+ (Multiple Connections)' name='federated.1tlx7k30mkgb1h112efxo15ss034' />
+          </datasources>
+          <mapsources>
+            <mapsource name='mapa' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.1tlx7k30mkgb1h112efxo15ss034'>
+            <column caption='distance from needle' datatype='real' name='[Calculation_134826536952471552]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='6371 * ACOS &#10;( &#10;SIN(RADIANS([latitude])) * SIN(RADIANS(47.620422)) + &#10;COS(RADIANS([latitude])) * COS(RADIANS(47.620422)) * COS(RADIANS(-122.349358) - RADIANS([longitude])) &#10;)' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal' />
+            <column datatype='integer' name='[Rating]' role='measure' type='quantitative' />
+            <column-instance column='[neighbourhood]' derivation='Attribute' name='[attr:neighbourhood:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_134826536952471552]' derivation='Avg' name='[avg:Calculation_134826536952471552:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Rating]' derivation='Avg' name='[avg:Rating:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[cleaning_fee]' derivation='Avg' name='[avg:cleaning_fee:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[latitude]' derivation='Avg' name='[avg:latitude:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[longitude]' derivation='Avg' name='[avg:longitude:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[security_deposit]' derivation='Avg' name='[avg:security_deposit:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[square_feet]' derivation='Avg' name='[avg:square_feet:qk]' pivot='key' type='quantitative' />
+            <column datatype='integer' name='[cleaning_fee]' role='measure' type='quantitative' />
+            <column aggregation='Sum' datatype='integer' name='[id]' role='dimension' type='ordinal' />
+            <column aggregation='Avg' datatype='real' name='[latitude]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' datatype='real' name='[longitude]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column-instance column='[Date]' derivation='Month' name='[mn:Date:ok]' pivot='key' type='ordinal' />
+            <column datatype='string' name='[neighbourhood]' role='dimension' type='nominal' />
+            <column-instance column='[id]' derivation='None' name='[none:id:ok]' pivot='key' type='ordinal' />
+            <column aggregation='None' caption='price (bin)' datatype='integer' name='[price (bin)]' role='dimension' type='ordinal'>
+              <calculation class='bin' decimals='1' formula='[price]' peg='0' size='20' />
+            </column>
+            <column datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[security_deposit]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[square_feet]' role='measure' type='quantitative' />
+            <column-instance column='[Date]' derivation='Year' name='[yr:Date:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (YEAR(Date),MONTH(Date))]'>
+            <groupfilter function='crossjoin' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[yr:Date:ok]' />
+              <groupfilter function='level-members' level='[mn:Date:ok]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (neighbourhood)]'>
+            <groupfilter function='level-members' level='[neighbourhood]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (price (bin))]'>
+            <groupfilter function='level-members' level='[price (bin)]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]' filter-group='5' included-values='in-range'>
+            <min>0.19027781143098541</min>
+            <max>14.465619506731128</max>
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' filter-group='3' included-values='in-range'>
+            <min>1.0</min>
+            <max>5.0</max>
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' filter-group='4' included-values='in-range'>
+            <min>25.0</min>
+            <max>999.0</max>
+          </filter>
+          <slices>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (YEAR(Date),MONTH(Date))]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (price (bin))]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (neighbourhood)]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' palette='orange_blue_diverging_10_0' type='interpolated' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#f5f5f5' />
+          </style-rule>
+          <style-rule element='annotation'>
+            <format attr='stroke-size' id='annotation_0' value='2' />
+            <format attr='stroke-color' id='annotation_0' value='#333333' />
+            <format attr='line-end' id='annotation_0' value='arrow' />
+          </style-rule>
+          <style-rule element='map-layer'>
+            <format attr='enabled' id='mapbox.streets' value='true' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.05000000074505806' />
+            <format attr='wrap' value='false' />
+          </style-rule>
+          <style-rule element='quick-filter'>
+            <format attr='font-size' value='9' />
+            <format attr='title' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' value='Avg. Rating&#10; '>
+              <formatted-text>
+                <run>Avg. Rating&#10; </run>
+              </formatted-text>
+            </format>
+            <format attr='title' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]' value='Avg. distance &#10;from needle'>
+              <formatted-text>
+                <run>Avg. distance &#10;from needle</run>
+              </formatted-text>
+            </format>
+            <format attr='title' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' value='Avg. price&#10; &#10;'>
+              <formatted-text>
+                <run>Avg. price&#10; &#10;</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+          <style-rule element='quick-filter-title'>
+            <format attr='text-align' value='center' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-disallow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' />
+              <size column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' />
+              <lod column='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:id:ok]' />
+              <tooltip column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]' />
+              <tooltip column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:cleaning_fee:qk]' />
+              <tooltip column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:security_deposit:qk]' />
+              <tooltip column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:square_feet:qk]' />
+              <tooltip column='[federated.1tlx7k30mkgb1h112efxo15ss034].[attr:neighbourhood:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-transparency' value='206' />
+                <format attr='has-stroke' value='true' />
+                <format attr='stroke-color' value='#666666' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:latitude:qk]</rows>
+        <cols>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:longitude:qk]</cols>
+        <annotations>
+          <annotation class='point' id='0' mark-position='1' pullback='0' text-width='137'>
+            <formatted-text>
+              <run bold='true' fontalignment='1' fontcolor='#666666' fontsize='14'>Space Needle</run>
+            </formatted-text>
+            <point>
+              <visual-coordinate class='axis'>
+                <x-coord axis-value='-13620005.852198761'>
+                  <node-reference>
+                    <axis>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:longitude:qk]</axis>
+                  </node-reference>
+                </x-coord>
+                <y-coord axis-value='6044303.6258123126'>
+                  <node-reference>
+                    <axis>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:latitude:qk]</axis>
+                  </node-reference>
+                </y-coord>
+                <page-reference />
+                <projection name='EPSG:3857' u='-122.35059426827476' v='47.622640042464901' />
+              </visual-coordinate>
+            </point>
+            <body x='-89' y='38' />
+          </annotation>
+        </annotations>
+      </table>
+    </worksheet>
+    <worksheet name='Neighbourhood'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='airbnblistings.csv+ (Multiple Connections)' name='federated.1tlx7k30mkgb1h112efxo15ss034' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1tlx7k30mkgb1h112efxo15ss034'>
+            <column caption='distance from needle' datatype='real' name='[Calculation_134826536952471552]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='6371 * ACOS &#10;( &#10;SIN(RADIANS([latitude])) * SIN(RADIANS(47.620422)) + &#10;COS(RADIANS([latitude])) * COS(RADIANS(47.620422)) * COS(RADIANS(-122.349358) - RADIANS([longitude])) &#10;)' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal' />
+            <column datatype='integer' name='[Rating]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_134826536952471552]' derivation='Avg' name='[avg:Calculation_134826536952471552:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Rating]' derivation='Avg' name='[avg:Rating:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[id]' derivation='CountD' name='[ctd:id:qk]' pivot='key' type='quantitative' />
+            <column aggregation='Sum' datatype='integer' name='[id]' role='dimension' type='ordinal' />
+            <column aggregation='Avg' datatype='real' name='[latitude]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' datatype='real' name='[longitude]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column-instance column='[Date]' derivation='Month' name='[mn:Date:ok]' pivot='key' type='ordinal' />
+            <column datatype='string' name='[neighbourhood]' role='dimension' type='nominal' />
+            <column-instance column='[neighbourhood]' derivation='None' name='[none:neighbourhood:nk]' pivot='key' type='nominal' />
+            <column aggregation='None' caption='price (bin)' datatype='integer' name='[price (bin)]' role='dimension' type='ordinal'>
+              <calculation class='bin' decimals='1' formula='[price]' peg='0' size='20' />
+            </column>
+            <column datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column-instance column='[Date]' derivation='Year' name='[yr:Date:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (YEAR(Date),MONTH(Date))]'>
+            <groupfilter function='crossjoin' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[yr:Date:ok]' />
+              <groupfilter function='level-members' level='[mn:Date:ok]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (id)]'>
+            <groupfilter function='level-members' level='[id]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (price (bin))]'>
+            <groupfilter function='level-members' level='[price (bin)]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]' filter-group='5' included-values='in-range'>
+            <min>0.19027781143098541</min>
+            <max>14.465619506731128</max>
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' filter-group='3' included-values='in-range'>
+            <min>1.0</min>
+            <max>5.0</max>
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' filter-group='4' included-values='in-range'>
+            <min>25.0</min>
+            <max>999.0</max>
+          </filter>
+          <slices>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (YEAR(Date),MONTH(Date))]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (price (bin))]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (id)]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='table'>
+            <format attr='background-color' value='#f5f5f5' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-disallow'>
+            <view>
+              <breakdown value='on' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' />
+              <size column='[federated.1tlx7k30mkgb1h112efxo15ss034].[ctd:id:qk]' />
+              <text column='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:neighbourhood:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-line-first' value='true' />
+                <format attr='mark-labels-line-last' value='true' />
+                <format attr='mark-labels-range-min' value='true' />
+                <format attr='mark-labels-range-max' value='true' />
+                <format attr='mark-labels-mode' value='all' />
+                <format attr='mark-labels-range-scope' value='pane' />
+                <format attr='mark-labels-range-field' value='' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name='Price Bins'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontalignment='1' fontsize='14'>Price bins</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='airbnblistings.csv+ (Multiple Connections)' name='federated.1tlx7k30mkgb1h112efxo15ss034' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1tlx7k30mkgb1h112efxo15ss034'>
+            <column caption='distance from needle' datatype='real' name='[Calculation_134826536952471552]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='6371 * ACOS &#10;( &#10;SIN(RADIANS([latitude])) * SIN(RADIANS(47.620422)) + &#10;COS(RADIANS([latitude])) * COS(RADIANS(47.620422)) * COS(RADIANS(-122.349358) - RADIANS([longitude])) &#10;)' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal' />
+            <column datatype='integer' name='[Rating]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_134826536952471552]' derivation='Avg' name='[avg:Calculation_134826536952471552:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Rating]' derivation='Avg' name='[avg:Rating:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[id]' derivation='CountD' name='[ctd:id:qk]' pivot='key' type='quantitative' />
+            <column aggregation='Sum' datatype='integer' name='[id]' role='dimension' type='ordinal' />
+            <column aggregation='Avg' datatype='real' name='[latitude]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' datatype='real' name='[longitude]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column-instance column='[Date]' derivation='Month' name='[mn:Date:ok]' pivot='key' type='ordinal' />
+            <column datatype='string' name='[neighbourhood]' role='dimension' type='nominal' />
+            <column-instance column='[price (bin)]' derivation='None' name='[none:price (bin):ok]' pivot='key' type='ordinal' />
+            <column-instance column='[price (bin)]' derivation='None' name='[none:price (bin):qk]' pivot='key' type='quantitative' />
+            <column-instance column='[price]' derivation='None' name='[none:price:qk]' pivot='key' type='quantitative' />
+            <column aggregation='None' caption='price (bin)' datatype='integer' name='[price (bin)]' role='dimension' type='ordinal'>
+              <calculation class='bin' decimals='1' formula='[price]' peg='0' size='20' />
+            </column>
+            <column datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column-instance column='[Date]' derivation='Year' name='[yr:Date:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (YEAR(Date),MONTH(Date))]'>
+            <groupfilter function='crossjoin' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[yr:Date:ok]' />
+              <groupfilter function='level-members' level='[mn:Date:ok]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (id)]'>
+            <groupfilter function='level-members' level='[id]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (neighbourhood)]'>
+            <groupfilter function='level-members' level='[neighbourhood]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]' filter-group='5' included-values='in-range'>
+            <min>0.19027781143098541</min>
+            <max>14.465619506731128</max>
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' filter-group='3' included-values='in-range'>
+            <min>1.0</min>
+            <max>5.0</max>
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' filter-group='4' included-values='in-range'>
+            <min>25.0</min>
+            <max>999.0</max>
+          </filter>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:price (bin):ok]'>
+            <groupfilter function='except' user:ui-domain='database' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:price (bin):ok]' />
+              <groupfilter function='member' level='[none:price (bin):ok]' member='%null%' />
+            </groupfilter>
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:price:qk]' included-values='in-range'>
+            <min>25</min>
+            <max>512</max>
+          </filter>
+          <slices>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[none:price (bin):ok]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[none:price:qk]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (YEAR(Date),MONTH(Date))]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (neighbourhood)]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (id)]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:price (bin):qk]' scope='cols' value='' />
+            <format attr='subtitle' class='0' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:price (bin):qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:price (bin):qk]' scope='cols' value='true' />
+            <format attr='height' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:price (bin):qk]' value='85' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#f5f5f5' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-disallow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <mark-sizing custom-mark-size-in-axis-units='1.0' mark-alignment='mark-alignment-left' mark-sizing-setting='marks-scaling-on' use-custom-mark-size='false' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='1.9890055656433105' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1tlx7k30mkgb1h112efxo15ss034].[ctd:id:qk]</rows>
+        <cols>[federated.1tlx7k30mkgb1h112efxo15ss034].[none:price (bin):qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Sheet 8'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='airbnblistings.csv+ (Multiple Connections)' name='federated.1tlx7k30mkgb1h112efxo15ss034' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1tlx7k30mkgb1h112efxo15ss034'>
+            <column datatype='integer' name='[Rating]' role='measure' type='quantitative' />
+            <column-instance column='[Rating]' derivation='Avg' name='[avg:Rating:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[property_type]' derivation='None' name='[none:property_type:nk]' pivot='key' type='nominal' />
+            <column datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column datatype='string' name='[property_type]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-disallow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <color column='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:property_type:nk]' />
+              <lod column='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:property_type:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]</rows>
+        <cols>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Sheet 9'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='airbnblistings.csv+ (Multiple Connections)' name='federated.1tlx7k30mkgb1h112efxo15ss034' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1tlx7k30mkgb1h112efxo15ss034'>
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:vtavg:qk]' pivot='key' type='quantitative' visual-totals='Avg' />
+            <column datatype='string' name='[cancellation_policy]' role='dimension' type='nominal' />
+            <column-instance column='[cancellation_policy]' derivation='None' name='[none:cancellation_policy:nk]' pivot='key' type='nominal' />
+            <column-instance column='[property_type]' derivation='None' name='[none:property_type:nk]' pivot='key' type='nominal' />
+            <column datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column datatype='string' name='[property_type]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-disallow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:vtavg:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows total='true'>[federated.1tlx7k30mkgb1h112efxo15ss034].[none:property_type:nk]</rows>
+        <cols>[federated.1tlx7k30mkgb1h112efxo15ss034].[none:cancellation_policy:nk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Summary'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='airbnblistings.csv+ (Multiple Connections)' name='federated.1tlx7k30mkgb1h112efxo15ss034' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1tlx7k30mkgb1h112efxo15ss034'>
+            <column caption='distance from needle' datatype='real' name='[Calculation_134826536952471552]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='6371 * ACOS &#10;( &#10;SIN(RADIANS([latitude])) * SIN(RADIANS(47.620422)) + &#10;COS(RADIANS([latitude])) * COS(RADIANS(47.620422)) * COS(RADIANS(-122.349358) - RADIANS([longitude])) &#10;)' />
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal' />
+            <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+              <calculation class='tableau' formula='1' />
+            </column>
+            <column datatype='integer' name='[Rating]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_134826536952471552]' derivation='Avg' name='[avg:Calculation_134826536952471552:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Rating]' derivation='Avg' name='[avg:Rating:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[beds]' derivation='Avg' name='[avg:beds:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[cleaning_fee]' derivation='Avg' name='[avg:cleaning_fee:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[latitude]' derivation='Avg' name='[avg:latitude:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[longitude]' derivation='Avg' name='[avg:longitude:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[security_deposit]' derivation='Avg' name='[avg:security_deposit:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[square_feet]' derivation='Avg' name='[avg:square_feet:qk]' pivot='key' type='quantitative' />
+            <column datatype='integer' name='[beds]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[cleaning_fee]' role='measure' type='quantitative' />
+            <column aggregation='Sum' datatype='integer' name='[id]' role='dimension' type='ordinal' />
+            <column aggregation='Avg' datatype='real' name='[latitude]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' datatype='real' name='[longitude]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column-instance column='[Date]' derivation='Month' name='[mn:Date:ok]' pivot='key' type='ordinal' />
+            <column datatype='string' name='[neighbourhood]' role='dimension' type='nominal' />
+            <column datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[security_deposit]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[square_feet]' role='measure' type='quantitative' />
+            <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date]' derivation='Year' name='[yr:Date:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[sum:Number of Records:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:beds:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:square_feet:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:cleaning_fee:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:security_deposit:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[sum:Number of Records:qk]&quot;</bucket>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]&quot;</bucket>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:beds:qk]&quot;</bucket>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:square_feet:qk]&quot;</bucket>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]&quot;</bucket>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]&quot;</bucket>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:cleaning_fee:qk]&quot;</bucket>
+              <bucket>&quot;[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:security_deposit:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (YEAR(Date),MONTH(Date))]'>
+            <groupfilter function='crossjoin' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[yr:Date:ok]' />
+              <groupfilter function='level-members' level='[mn:Date:ok]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (id)]'>
+            <groupfilter function='level-members' level='[id]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (neighbourhood)]'>
+            <groupfilter function='level-members' level='[neighbourhood]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]' filter-group='5' included-values='in-range'>
+            <min>0.19027781143098541</min>
+            <max>14.465619506731128</max>
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' filter-group='3' included-values='in-range'>
+            <min>1.0</min>
+            <max>5.0</max>
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' filter-group='4' included-values='in-range'>
+            <min>25.0</min>
+            <max>999.0</max>
+          </filter>
+          <slices>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (id)]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (neighbourhood)]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (YEAR(Date),MONTH(Date))]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' value='142' />
+            <format attr='text-align' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[Multiple Values]' value='center' />
+            <format attr='vertical-align' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[Multiple Values]' value='center' />
+            <format attr='font-size' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[Multiple Values]' value='14' />
+            <format attr='text-format' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' value='n#,##0' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='height' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' value='60' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-align' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' value='center' />
+            <format attr='vertical-align' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' value='center' />
+            <format attr='color' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' value='#898989' />
+            <format attr='font-weight' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' value='normal' />
+            <format attr='font-size' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' value='10' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#f5f5f5' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-disallow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Multiple Values]' />
+              <lod column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:latitude:qk]' />
+              <lod column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:longitude:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols>[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='TOP 10'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='airbnblistings.csv+ (Multiple Connections)' name='federated.1tlx7k30mkgb1h112efxo15ss034' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1tlx7k30mkgb1h112efxo15ss034'>
+            <column datatype='integer' name='[Rating]' role='measure' type='quantitative' />
+            <column-instance column='[Rating]' derivation='Avg' name='[avg:Rating:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Rating]' derivation='CountD' name='[ctd:Rating:qk]' pivot='key' type='quantitative' />
+            <column aggregation='Sum' datatype='integer' name='[id]' role='dimension' type='ordinal' />
+            <column-instance column='[id]' derivation='None' name='[none:id:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:id:ok]'>
+            <groupfilter count='10' end='top' function='end' units='records' user:ui-marker='end'>
+              <groupfilter direction='DESC' expression='avg([Rating])*COUNTD([Rating])' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:id:ok]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <sort class='computed' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:id:ok]' direction='DESC' using='[federated.1tlx7k30mkgb1h112efxo15ss034].[ctd:Rating:qk]' />
+          <slices>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[none:id:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-disallow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <tooltip column='[federated.1tlx7k30mkgb1h112efxo15ss034].[ctd:Rating:qk]' />
+              <text column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1tlx7k30mkgb1h112efxo15ss034].[none:id:ok]</rows>
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name='avg price MTH'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontalignment='1' fontsize='14'>MTH / avg. price</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='airbnblistings.csv+ (Multiple Connections)' name='federated.1tlx7k30mkgb1h112efxo15ss034' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1tlx7k30mkgb1h112efxo15ss034'>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal' />
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[id]' derivation='CountD' name='[ctd:id:qk]' pivot='key' type='quantitative' />
+            <column aggregation='Sum' datatype='integer' name='[id]' role='dimension' type='ordinal' />
+            <column-instance column='[Date]' derivation='Month' name='[mn:Date:ok]' pivot='key' type='ordinal' />
+            <column datatype='string' name='[neighbourhood]' role='dimension' type='nominal' />
+            <column-instance column='[price]' derivation='Avg' name='[pcdf:avg:price:qk]' pivot='key' type='quantitative'>
+              <table-calc diff-options='Relative' ordering-type='Rows' type='PctDiff'>
+                <address>
+                  <value>-1</value>
+                </address>
+              </table-calc>
+            </column-instance>
+            <column aggregation='None' caption='price (bin)' datatype='integer' name='[price (bin)]' role='dimension' type='ordinal'>
+              <calculation class='bin' decimals='1' formula='[price]' peg='0' size='20' />
+            </column>
+            <column datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column-instance column='[Date]' derivation='Year' name='[yr:Date:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (id)]'>
+            <groupfilter function='level-members' level='[id]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (neighbourhood)]'>
+            <groupfilter function='level-members' level='[neighbourhood]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (price (bin))]'>
+            <groupfilter function='level-members' level='[price (bin)]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (price (bin))]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (neighbourhood)]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[Action (id)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' field-type='quantitative' fold='true' scope='rows' type='space' />
+            <format attr='width' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[ctd:id:qk]' value='40' />
+            <format attr='width' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' value='40' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[pcdf:avg:price:qk]' value='p0%' />
+            <format attr='vertical-align' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[pcdf:avg:price:qk]' value='auto' />
+            <format attr='text-align' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[pcdf:avg:price:qk]' value='center' />
+            <format attr='font-weight' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[pcdf:avg:price:qk]' value='bold' />
+            <format attr='color' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[pcdf:avg:price:qk]' value='#555555' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#f5f5f5' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-disallow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' />
+            </encodings>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-disallow' y-axis-name='[federated.1tlx7k30mkgb1h112efxo15ss034].[ctd:id:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' />
+            </encodings>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-disallow' y-axis-name='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' />
+              <text column='[federated.1tlx7k30mkgb1h112efxo15ss034].[pcdf:avg:price:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1tlx7k30mkgb1h112efxo15ss034].[ctd:id:qk] + [federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk])</rows>
+        <cols>([federated.1tlx7k30mkgb1h112efxo15ss034].[yr:Date:ok] / [federated.1tlx7k30mkgb1h112efxo15ss034].[mn:Date:ok])</cols>
+      </table>
+    </worksheet>
+    <worksheet name='avg price map'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='airbnblistings.csv+ (Multiple Connections)' name='federated.1tlx7k30mkgb1h112efxo15ss034' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.1tlx7k30mkgb1h112efxo15ss034'>
+            <column caption='distance from needle' datatype='real' name='[Calculation_134826536952471552]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='6371 * ACOS &#10;( &#10;SIN(RADIANS([latitude])) * SIN(RADIANS(47.620422)) + &#10;COS(RADIANS([latitude])) * COS(RADIANS(47.620422)) * COS(RADIANS(-122.349358) - RADIANS([longitude])) &#10;)' />
+            </column>
+            <column datatype='integer' name='[Rating]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_134826536952471552]' derivation='Avg' name='[avg:Calculation_134826536952471552:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Rating]' derivation='Avg' name='[avg:Rating:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+            <column datatype='string' name='[country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column aggregation='Avg' datatype='real' name='[latitude]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' datatype='real' name='[longitude]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column-instance column='[country]' derivation='None' name='[none:country:nk]' pivot='key' type='nominal' />
+            <column-instance column='[zipcode]' derivation='None' name='[none:zipcode:ok]' pivot='key' type='ordinal' />
+            <column datatype='integer' name='[price]' role='measure' type='quantitative' />
+            <column datatype='real' name='[zipcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]' filter-group='5' included-values='in-range'>
+            <min>0.19027781143098541</min>
+            <max>14.465619506731128</max>
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' filter-group='3' included-values='in-range'>
+            <min>1.0</min>
+            <max>5.0</max>
+          </filter>
+          <filter class='quantitative' column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' filter-group='4' included-values='in-range'>
+            <min>25.0</min>
+            <max>999.0</max>
+          </filter>
+          <slices>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]</column>
+            <column>[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' palette='orange_blue_diverging_10_0' type='interpolated' />
+            <encoding attr='color' field='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' min='3.3999999999999999' palette='orange_blue_diverging_10_0' symmetric='false' type='interpolated' />
+          </style-rule>
+          <style-rule element='map-layer'>
+            <format attr='enabled' id='tab_base' value='true' />
+            <format attr='enabled' id='um_lcover' value='true' />
+            <format attr='enabled' id='tab_coastline' value='false' />
+            <format attr='enabled' id='pp2_line' value='false' />
+            <format attr='enabled' id='light_adm0_bnd' value='false' />
+            <format attr='enabled' id='light_adm0_lbl' value='false' />
+            <format attr='enabled' id='um_adm0_bnd' value='true' />
+            <format attr='enabled' id='um_adm0_lbl' value='true' />
+            <format attr='enabled' id='light_pp2_statebounds' value='false' />
+            <format attr='enabled' id='light_pp2_statelabels' value='false' />
+            <format attr='enabled' id='pp2_adminlabels' value='false' />
+            <format attr='enabled' id='pp2_statebounds' value='true' />
+            <format attr='enabled' id='pp2_statelabels' value='true' />
+            <format attr='enabled' id='countybounds' value='false' />
+            <format attr='enabled' id='countylabels' value='false' />
+            <format attr='enabled' id='zipbounds' value='false' />
+            <format attr='enabled' id='ziplabels' value='false' />
+            <format attr='enabled' id='tab_areabounds' value='false' />
+            <format attr='enabled' id='tab_arealabels' value='false' />
+            <format attr='enabled' id='tab_msabounds' value='false' />
+            <format attr='enabled' id='tab_msalabels' value='false' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-disallow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' />
+              <text column='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' />
+              <lod column='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:country:nk]' />
+              <lod column='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:zipcode:ok]' />
+              <geometry column='[federated.1tlx7k30mkgb1h112efxo15ss034].[Geometry (generated)]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1tlx7k30mkgb1h112efxo15ss034].[Latitude (generated)]</rows>
+        <cols>[federated.1tlx7k30mkgb1h112efxo15ss034].[Longitude (generated)]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Dashboard 1'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontalignment='1' fontsize='22'>Seattle - Airbnb pricing overview</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <style>
+        <style-rule element='table'>
+          <format attr='background-color' value='#f5f5f5' />
+        </style-rule>
+      </style>
+      <size maxheight='700' maxwidth='1000' minheight='700' minwidth='1000' sizing-mode='fixed' />
+      <datasources>
+        <datasource caption='airbnblistings.csv+ (Multiple Connections)' name='federated.1tlx7k30mkgb1h112efxo15ss034' />
+      </datasources>
+      <datasource-dependencies datasource='federated.1tlx7k30mkgb1h112efxo15ss034'>
+        <column caption='distance from needle' datatype='real' name='[Calculation_134826536952471552]' role='measure' type='quantitative'>
+          <calculation class='tableau' formula='6371 * ACOS &#10;( &#10;SIN(RADIANS([latitude])) * SIN(RADIANS(47.620422)) + &#10;COS(RADIANS([latitude])) * COS(RADIANS(47.620422)) * COS(RADIANS(-122.349358) - RADIANS([longitude])) &#10;)' />
+        </column>
+        <column datatype='integer' name='[Rating]' role='measure' type='quantitative' />
+        <column-instance column='[Calculation_134826536952471552]' derivation='Avg' name='[avg:Calculation_134826536952471552:qk]' pivot='key' type='quantitative' />
+        <column-instance column='[Rating]' derivation='Avg' name='[avg:Rating:qk]' pivot='key' type='quantitative' />
+        <column-instance column='[price]' derivation='Avg' name='[avg:price:qk]' pivot='key' type='quantitative' />
+        <column datatype='integer' name='[price]' role='measure' type='quantitative' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='3' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='20' param='horz' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='100000' id='15' param='vert' type='layout-flow' w='100000' x='0' y='0'>
+              <zone h='7427' id='14' type='title' w='100000' x='0' y='0' />
+              <zone fixed-size='90' h='13999' id='16' is-fixed='true' name='Summary' show-title='false' w='100000' x='0' y='7427'>
+                <layout-cache cell-count-w='8' type-h='cell' type-w='cell' />
+              </zone>
+              <zone fixed-size='29' h='4143' id='17' is-fixed='true' param='vert' type='layout-flow' w='100000' x='0' y='21426' />
+              <zone h='74431' id='13' param='horz' type='layout-flow' w='100000' x='0' y='25569'>
+                <zone h='74431' id='9' param='horz' type='layout-flow' w='99600' x='0' y='25569'>
+                  <zone h='74431' id='6' param='horz' type='layout-flow' w='99600' x='0' y='25569'>
+                    <zone h='74431' id='4' type='layout-basic' w='99600' x='0' y='25569'>
+                      <zone h='60857' id='2' name='Map' show-title='false' w='36558' x='0' y='39143' />
+                      <zone h='21717' id='7' name='Neighbourhood' show-title='false' w='51542' x='36558' y='25569' />
+                      <zone h='52714' id='10' name='Price Bins' w='30063' x='36558' y='47286' />
+                      <zone h='52714' id='11' name='avg price MTH' w='32979' x='66621' y='47286' />
+                      <zone h='21717' id='18' is-scaled='1' param='Image/needle icon.jpg' type='bitmap' w='11500' x='88100' y='25569' />
+                      <zone h='13574' id='21' name='Map' param='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' type='filter' values='relevant' w='12242' x='0' y='25569' />
+                      <zone h='13574' id='22' name='Map' param='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' type='filter' values='relevant' w='12741' x='12242' y='25569' />
+                      <zone h='13574' id='23' name='Map' param='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]' type='filter' values='relevant' w='11575' x='24983' y='25569' />
+                    </zone>
+                  </zone>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='avg price map'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+    </window>
+    <window class='worksheet' name='Price Bins'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+      </viewpoint>
+    </window>
+    <window class='worksheet' name='avg price MTH'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='1' param='[federated.1tlx7k30mkgb1h112efxo15ss034].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+    </window>
+    <window class='worksheet' name='Map'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Calculation_134826536952471552:qk]' show-domain='false' show-null-ctrls='false' type='filter' />
+            <card param='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' show-domain='false' show-null-ctrls='false' type='filter' />
+            <card param='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' show-domain='false' show-null-ctrls='false' type='filter' />
+            <card pane-specification-id='0' param='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:Rating:qk]' type='color' />
+            <card pane-specification-id='0' param='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' type='size' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <default-map-tool-selection tool='4' />
+        <default-map-unit-selection mapunit='1' />
+      </viewpoint>
+    </window>
+    <window class='worksheet' name='Summary'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+    </window>
+    <window class='worksheet' name='Neighbourhood'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.1tlx7k30mkgb1h112efxo15ss034].[avg:price:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+    </window>
+    <window class='worksheet' name='TOP 10'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <default-map-tool-selection tool='2' />
+      </viewpoint>
+    </window>
+    <window class='dashboard' maximized='true' name='Dashboard 1'>
+      <viewpoints>
+        <viewpoint name='Map'>
+          <zoom type='entire-view' />
+          <default-map-tool-selection tool='8' />
+          <default-map-unit-selection mapunit='1' />
+        </viewpoint>
+        <viewpoint name='Neighbourhood'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Price Bins'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Summary'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='avg price MTH'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='22' />
+    </window>
+    <window class='worksheet' name='Sheet 8'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.1tlx7k30mkgb1h112efxo15ss034].[none:property_type:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+    </window>
+    <window class='worksheet' name='Sheet 9'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+    </window>
+  </windows>
+</workbook>

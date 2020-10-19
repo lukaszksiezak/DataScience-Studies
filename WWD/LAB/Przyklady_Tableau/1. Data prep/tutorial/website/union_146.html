@@ -1,0 +1,89 @@
+
+		<!DOCTYPE html>
+		<head>
+		<title>Data Prep for Data Rockstars</title>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/script.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		</head>
+		<body onscroll="OnScroll()">
+		<div class="container-fluid" style="height:100%;">
+			<!-- Top padding -->
+			<div class="row toppad"></div>
+			<div class="row" id="hdhd">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head">
+							<span class="title">
+							<img src="imgs/lockupsmall_darkblue.png" class="title"/> <a href="../welcome.html">Data Prep for Data Rockstars</a>
+							</span>
+							<div class="navnp"><a href="dashboard1listingreviews_296.html">next <span class="fa fa-angle-right"></span> </a></div>
+							<div class="navnp"><a href="worksheet3totalreviews_295.html"><span class="fa fa-angle-left"></span> previous </a><span id="bothnp"> | </span></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row" id="hiddenspacer" style="display:none;">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head" style="margin-bottom:20px;">
+							<h1>&nbsp;</h1>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+			<!-- Start of content -->
+				<div class="row">
+					<!-- Side navigation -->
+					<div class="col-xs-3" style="padding:0px">
+						<div class="col-xs-12 block nav">
+						<div class="col-xs-12">		<div class="row sec" id="sec99">
+								<div class="sectitle"><h3>Connecting to Your Data</h3></div><a href="datainterpreter_143.html" class="seclist">Data Interpreter</a><br/><a href="worksheet1listingsbyzip_292.html" class="seclist">Worksheet 1: Listings by Zip</a><br/>		</div>		<div class="row sec" id="sec100">
+								<div class="sectitle"><h3>Preparing Your Data</h3></div><a href="split_144.html" class="seclist">Split</a><br/><a href="worksheet2listingsatlatlong_294.html" class="seclist">Worksheet 2: Listings at Lat Long</a><br/><a href="crossdatabasejoin_145.html" class="seclist">Cross Database Join</a><br/><a href="worksheet3totalreviews_295.html" class="seclist">Worksheet 3: Total Reviews</a><br/><a href="union_146.html" class="seclist curchal">Union</a><br/><a href="dashboard1listingreviews_296.html" class="seclist">Dashboard 1: Listing Reviews</a><br/><a href="pivot_147.html" class="seclist">Pivot</a><br/><a href="worksheet4dateparse_305.html" class="seclist">Worksheet 4: Dateparse</a><br/><a href="worksheet5medianhomepricesrates_297.html" class="seclist">Worksheet 5: Median Home Prices & Rates</a><br/><a href="dashboard2airbnbprices_298.html" class="seclist">Dashboard 2:  AirBNB Prices</a><br/>		</div>		<div class="row sec" id="sec101">
+								<div class="sectitle"><h3>Editing Metadata</h3></div><a href="fieldnamesandproperties_148.html" class="seclist">Field Names and Properties</a><br/><a href="saveandshare_149.html" class="seclist">Save and Share </a><br/>		</div>		<br/>
+						</div>
+						</div>
+					</div>
+					<!-- Challenges and steps -->
+					<div class="col-xs-9 cont">
+						<div class="col-xs-12">
+							<div class="row current block shadow">
+								<span class="currenttitle">
+									Union
+									<input class="btn btn-default switch" type="button" onClick="showHide();" id ="switch" value="View Solution">
+								</span>
+							</div>
+							<div id="challenge"  style="display:block;">
+								<div class="row block shadow step">
+								<p style="margin: 9px 0px 0px; line-height: 17.5px;"><i><font size="5"><font color="#333333">You can union&nbsp;your data to combine two or more tables from Excel workbook or text file data. The workbooks or text files must be in the same folder. You union&nbsp;</font><font color="#333333">tables by appending values (rows) from one table to another.]</font></font></i></p><p style="margin: 9px 0px 0px; line-height: 17.5px;"><i><font size="5"><font color="#333333"><br></font></font></i></p><p style="margin: 9px 0px 0px; color: rgb(51, 51, 51); line-height: 17.5px;"><i><font size="5">For best results, the tables that you combine must have the same structure.&nbsp;That is, each table must have the same number of fields, and related fields must have matching field names and data types.</font></i></p><p style="margin: 9px 0px 0px; color: rgb(51, 51, 51); line-height: 17.5px;"><i><font size="5"><br></font></i></p><p style="margin: 9px 0px 0px; color: rgb(51, 51, 51); line-height: 17.5px;"><font size="5">In this example, we'll union together several files, each one containing one year's worth of Reviews data for Austin AirBNBs.&nbsp;</font></p><p style="margin: 9px 0px 0px; color: rgb(51, 51, 51); line-height: 17.5px;"><font size="5"><br></font></p><p style="margin: 9px 0px 0px; color: rgb(51, 51, 51); line-height: 17.5px;"></p><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><p style="margin: 9px 0px 0px; color: rgb(51, 51, 51); line-height: 17.5px;"><font size="5"><img src="imgs/unionstart.png"></font></p></blockquote><p></p><p style="margin: 9px 0px 0px; color: rgb(51, 51, 51); line-height: 17.5px;"><font size="5"><br></font></p><p style="margin: 9px 0px 0px; color: rgb(51, 51, 51); line-height: 17.5px;"><font size="5">You may notice that two of the columns contain similar data, though in Tableau, they are separated out into two different columns. This is because they have different column header names (Review_ID and ID). Use the "Merge Mismatched Fields" menu option to combine these columns into one for more seamless analysis.&nbsp;</font></p><p style="margin: 9px 0px 0px; color: rgb(51, 51, 51); line-height: 17.5px;"><font size="5"><br></font></p><p style="margin: 9px 0px 0px; color: rgb(51, 51, 51); line-height: 17.5px;"><font size="5"><img src="imgs/unionmerge.png"></font></p>
+								</div>
+							</div>
+							<!-- Start php step loop -->
+							<div id="solution"  style="display:none;">			<div class="row block shadow step">
+										<span class="circle" id="step635num">1</span><span class="steptitle" id="step635title"> Create a union for Review years 2009-2014</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">Drag/drop  tables for the rest of years (2010-2014) under the AustinAirBNBReviews-2009 file to union them</span></div>			<br/><img src="imgs/union01.gif" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step636num">2</span><span class="steptitle" id="step636title"> Merge Mismatched Fields</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">After the union, you may notice that something is wrong with our count of Reviews in our worksheet--the count did not increase. It turns out out in some of the tables, 'Review Id' is named 'id'.  We need to merge these columns together so we can count them together in our analysis.</span></div>			<br/><img src="imgs/unionmerge.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1031num">3</span><span class="steptitle" id="step1031title"> Merge columns that have similar data but different column header names</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">Ctrl + Click on each of the mismatched fields--titled "Review ID" and "ID" from the AustinAirBNBReviews-XXXX data sources. Right click on one field and select  “Merge Mismatched Fields.” Rename the new field to "Review ID Number"</span></div>			<br/><img src="imgs/unionmerge02.gif" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1032num">4</span><span class="steptitle" id="step1032title"> After merging, replace the old count distinct field with the correct, merged field</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">Tip: Use a right-click drag to quickly select Count Distinct</span></div>			<br/><img src="imgs/replacegif.gif" />			</div>		</div>
+							<!-- End php step loop -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		</body>
+		</html>
+		

@@ -1,0 +1,104 @@
+
+		<!DOCTYPE html>
+		<head>
+		<title>Intro to Table Calculations</title>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/script.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		</head>
+		<body onscroll="OnScroll()">
+		<div class="container-fluid" style="height:100%;">
+			<!-- Top padding -->
+			<div class="row toppad"></div>
+			<div class="row" id="hdhd">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head">
+							<span class="title">
+							<img src="imgs/lockupsmall_lightblue.png" class="title"/> <a href="../welcome.html">Intro to Table Calculations</a>
+							</span>
+							<div class="navnp"><a href="challenge2canyoufiltertheviewfromchallenge1toonlyshowthetop5hottestdayseachmonth_322.html">next <span class="fa fa-angle-right"></span> </a></div>
+							<div class="navnp"><a href="groupexercisewhatarethehighestrankedtweetsbasedonthenumberoffavourites_320.html"><span class="fa fa-angle-left"></span> previous </a><span id="bothnp"> | </span></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row" id="hiddenspacer" style="display:none;">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head" style="margin-bottom:20px;">
+							<h1>&nbsp;</h1>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+			<!-- Start of content -->
+				<div class="row">
+					<!-- Side navigation -->
+					<div class="col-xs-3" style="padding:0px">
+						<div class="col-xs-12 block nav">
+						<div class="col-xs-12">		<div class="row sec" id="sec137">
+								<div class="sectitle"><h3>Running Total</h3></div><a href="groupexercisewhowasthefastestto500homeruns_245.html" class="seclist">Group Exercise: Who was the fastest to 500 home runs?</a><br/>		</div>		<div class="row sec" id="sec138">
+								<div class="sectitle"><h3>Percent of Total</h3></div><a href="groupexercisewhatpercentofeachdemographicdefaultedontheircreditcard_246.html" class="seclist">Group Exercise: What percent of each demographic defaulted on their credit card?</a><br/><a href="challenge1whohadahigherpercentageoftweetssentfromaniphonetheunitedstatesorunited_247.html" class="seclist">Challenge 1: Who had a higher percentage of tweets sent from an iPhone? The United States, or United</a><br/><a href="challenge2theysayaprilshowersbringmayflowers.isittrue_248.html" class="seclist">Challenge 2: They say "April showers bring May flowers". Is it true?</a><br/>		</div>		<div class="row sec" id="sec139">
+								<div class="sectitle"><h3>Percent Difference</h3></div><a href="groupexercisewhichindexperformedbetter_268.html" class="seclist">Group Exercise: Which Index performed better?</a><br/><a href="challenge1biggestjumpindow_269.html" class="seclist">Challenge 1: Biggest jump in Dow</a><br/><a href="challenge2spoutperformsdow_270.html" class="seclist">Challenge 2: S&P Outperforms Dow </a><br/>		</div>		<div class="row sec" id="sec200">
+								<div class="sectitle"><h3>Moving Average</h3></div><a href="groupexerciseaveragetemperatureinaustin_378.html" class="seclist">Group Exercise: Average temperature in Austin</a><br/><a href="challenge1twittertrends_381.html" class="seclist">Challenge 1: Twitter Trends</a><br/><a href="challenge2parameterstoadjustrange_383.html" class="seclist">Challenge 2: Parameters to adjust range </a><br/>		</div>		<div class="row sec" id="sec140">
+								<div class="sectitle"><h3>Rank</h3></div><a href="groupexercisewhatarethehighestrankedtweetsbasedonthenumberoffavourites_320.html" class="seclist">Group Exercise:  What are the highest ranked tweets based on the number of favourites?</a><br/><a href="challenge1whatarethehottestdaysineachmonth_321.html" class="seclist curchal">Challenge 1: What are the hottest days in each month?</a><br/><a href="challenge2canyoufiltertheviewfromchallenge1toonlyshowthetop5hottestdayseachmonth_322.html" class="seclist">Challenge 2: Can you filter the view from Challenge 1 to only show the Top 5 hottest days each month</a><br/>		</div>		<div class="row sec" id="sec141">
+								<div class="sectitle"><h3>Window Calculations (e.g. Window_Max())</h3></div><a href="groupexercisehowdohomerunsinrecentyearscomparetoourhomerunaverageoverallyears_346.html" class="seclist">Group Exercise: How do Home Runs in recent years compare to our Home Run Average over all years?</a><br/><a href="challenge1howmanymorehitsdidpeterosehavethantheaverageplayer_347.html" class="seclist">Challenge 1: How many more hits did Pete Rose have than the average player?</a><br/><a href="challenge2highlighttheyearsthathadthegreatestdeviationinhitsfromtheaverage._348.html" class="seclist">Challenge 2: Highlight the year(s) that had the greatest deviation in hits from the average.</a><br/>		</div>		<br/>
+						</div>
+						</div>
+					</div>
+					<!-- Challenges and steps -->
+					<div class="col-xs-9 cont">
+						<div class="col-xs-12">
+							<div class="row current block shadow">
+								<span class="currenttitle">
+									Challenge 1: What are the hottest days in each month?
+									<input class="btn btn-default switch" type="button" onClick="showHide();" id ="switch" value="View Solution">
+								</span>
+							</div>
+							<div id="challenge"  style="display:block;">
+								<div class="row block shadow step">
+								What are the hottest days in each month? In order to create this view, we will need to use the Rank function, as Sorting will not give us the correct view.
+								</div>
+							</div>
+							<!-- Start php step loop -->
+							<div id="solution"  style="display:none;">			<div class="row block shadow step">
+										<span class="circle" id="step805num">1</span><span class="steptitle" id="step805title"> Navigate to the "Austin Weather" Dataset, and drag Max Temperature F to the Columns Shelf.</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/5step1.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step806num">2</span><span class="steptitle" id="step806title"> Change the aggregation from a Sum to an Average. </span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/5step2.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step807num">3</span><span class="steptitle" id="step807title"> Drag the Date field to the Rows Shelf, and change the Date Part to Discrete Month.</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/5step3.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step808num">4</span><span class="steptitle" id="step808title"> Drag a new Date field from the Dimensions Shelf to the Rows Shelf, behind the MONTH(Date) pill. Change the Date Part to Discrete Day.</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/5step4.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step809num">5</span><span class="steptitle" id="step809title"> Change the view to Bars from Automatic, on the Marks Card.</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/5step5.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step810num">6</span><span class="steptitle" id="step810title"> When we press "Sort", notice that the sorting is all wrong! Drag a new "Max Temperature F" to the Detail Pane, and change the aggregation to an Average.</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">This failed sorting occurs because Tableau is sorting the Day of each Month at an aggregate level, before breaking down each Month's temperature difference. Notice the order of each Day of Date is the same for each Month (e.g. 19, 25, 26... for every month).</span></div>			<br/><img src="imgs/5step6.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step811num">7</span><span class="steptitle" id="step811title"> Change the AVG(Max Temperature F) pill on the Detail Pane to a Rank Table Calculation.</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/5step7.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step812num">8</span><span class="steptitle" id="step812title"> Right-click the new Rank Pill you've created, and change it to a Discrete Pill.</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/5step9.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step813num">9</span><span class="steptitle" id="step813title"> This allows you to drag the (now Discrete) Rank pill between the MONTH(Date) and DAY(Date) pills.</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/5step10.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step814num">10</span><span class="steptitle" id="step814title"> That's the kind of Sort we're looking for! Lastly, we need to change the Rank to Compute Pane (down).</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/5step11.png" />			</div>		</div>
+							<!-- End php step loop -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		</body>
+		</html>
+		

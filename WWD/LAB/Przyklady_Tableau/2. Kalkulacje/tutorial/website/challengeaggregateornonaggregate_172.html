@@ -1,0 +1,91 @@
+
+		<!DOCTYPE html>
+		<head>
+		<title>Introduction to Business Calculations</title>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/script.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		</head>
+		<body onscroll="OnScroll()">
+		<div class="container-fluid" style="height:100%;">
+			<!-- Top padding -->
+			<div class="row toppad"></div>
+			<div class="row" id="hdhd">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head">
+							<span class="title">
+							<img src="imgs/lockupsmall_green.png" class="title"/> <a href="../welcome.html">Introduction to Business Calculations</a>
+							</span>
+							<div class="navnp"><a href="groupsimpleif_656.html">next <span class="fa fa-angle-right"></span> </a></div>
+							<div class="navnp"><a href="individualwhentousenonaggregatecalculations_154.html"><span class="fa fa-angle-left"></span> previous </a><span id="bothnp"> | </span></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row" id="hiddenspacer" style="display:none;">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head" style="margin-bottom:20px;">
+							<h1>&nbsp;</h1>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+			<!-- Start of content -->
+				<div class="row">
+					<!-- Side navigation -->
+					<div class="col-xs-3" style="padding:0px">
+						<div class="col-xs-12 block nav">
+						<div class="col-xs-12">		<div class="row sec" id="sec74">
+								<div class="sectitle"><h3>Aggregate vs. Non-aggregate</h3></div><a href="groupexerciseaggregatenonaggregate_647.html" class="seclist">Group Exercise: Aggregate = Non-aggregate</a><br/><a href="groupexerciseaggregatenonaggregate_648.html" class="seclist">Group Exercise: Aggregate != Non-aggregate</a><br/><a href="individualwhentousenonaggregatecalculations_154.html" class="seclist">Individual: When to use non-aggregate calculations</a><br/><a href="challengeaggregateornonaggregate_172.html" class="seclist curchal">Challenge: Aggregate or Non-aggregate</a><br/>		</div>		<div class="row sec" id="sec112">
+								<div class="sectitle"><h3>IF Statements</h3></div><a href="groupsimpleif_656.html" class="seclist">Group: Simple IF()</a><br/><a href="individualmulticonditionif_176.html" class="seclist">Individual: Multi-Condition IF</a><br/><a href="challengemixedconditionif_177.html" class="seclist">Challenge: Mixed-Condition IF</a><br/>		</div>		<div class="row sec" id="sec113">
+								<div class="sectitle"><h3>Boolean Calculations</h3></div><a href="groupsimpleboolean_660.html" class="seclist">Group: Simple Boolean</a><br/><a href="individualmulticonditionboolean_178.html" class="seclist">Individual: Multi-Condition Boolean</a><br/><a href="challengemeasureanddimensionboolean_179.html" class="seclist">Challenge: Measure and Dimension Boolean</a><br/>		</div>		<div class="row sec" id="sec114">
+								<div class="sectitle"><h3>String Calculations</h3></div><a href="groupsplit_662.html" class="seclist">Group: Split</a><br/><a href="groupleft_663.html" class="seclist">Group: LEFT()</a><br/><a href="individualparseandcombinestrings_157.html" class="seclist">Individual: Parse and Combine Strings</a><br/><a href="challenge1stringmanipulationformetadatamanagement_250.html" class="seclist">Challenge 1: String Manipulation for Metadata Management</a><br/><a href="challenge2searchstringsandcreatenewdimensions_251.html" class="seclist">Challenge 2: Search Strings and Create New Dimensions</a><br/>		</div>		<div class="row sec" id="sec115">
+								<div class="sectitle"><h3>Date Calculations</h3></div><a href="groupdateparse_664.html" class="seclist">Group: DATEPARSE()</a><br/><a href="individualhowlongagodidsomethinghappen_257.html" class="seclist">Individual: How long ago did something happen?</a><br/>		</div>		<br/>
+						</div>
+						</div>
+					</div>
+					<!-- Challenges and steps -->
+					<div class="col-xs-9 cont">
+						<div class="col-xs-12">
+							<div class="row current block shadow">
+								<span class="currenttitle">
+									Challenge: Aggregate or Non-aggregate
+									<input class="btn btn-default switch" type="button" onClick="showHide();" id ="switch" value="View Solution">
+								</span>
+							</div>
+							<div id="challenge"  style="display:block;">
+								<div class="row block shadow step">
+								<div><font face="Arial">Calculate the total loan amount owed within each <b>Grade</b>&nbsp;by using a simple future value calculation (see equation below) for all 60 month (5 year) loans. Because of the wildly variable loan amounts and interest rates in the&nbsp;data set, calculate the future value using averages.&nbsp;</font></div><div><font face="Arial"><br></font></div><div><font face="Arial">Future Value = Loan Amnt &nbsp;* (1+Int Rate)^5</font></div><div><font face="Arial">aka&nbsp;</font></div><div><font face="Arial">Future value = loan amount multiplied by 1 plus the interest rate raised to the power of total years</font></div><div><span style="font-family: Arial;"><br></span></div><div><br></div><div><img src="imgs/aggchallenge.png"></div><div><span style="font-family: Arial;"><br></span></div><div><span style="font-family: Arial;"><br></span></div><div><span style="font-family: Arial;"><br></span></div>
+								</div>
+							</div>
+							<!-- Start php step loop -->
+							<div id="solution"  style="display:none;">			<div class="row block shadow step">
+										<span class="circle" id="step245num">1</span><span class="steptitle" id="step245title"> Drag [Loan Amnt] to the Columns shelf and change the aggregation from SUM to AVG. Drag [Grade] to the Rows shelf. </span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">Remember, we are only interested in loans with 5 year (60-month) terms. Be sure to add [Term] to the Filters shelf.</span></div>			<br/><img src="imgs/1.21.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step246num">2</span><span class="steptitle" id="step246title"> Create the "Future Value" calculated field.</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">Continue to use AVG as the aggregation for the measures.</span></div>			<br/><blockquote><p class="calc"><span class="blue">AVG</span>(<span class="orange">[Loan Amnt]</span>)* <span class="blue">POWER</span>((1+<span class="blue">AVG</span>(<span class="orange">[Int Rate]</span>)), <span class="blue">AVG</span>(<span class="orange">[Term Years]</span>))</p></blockquote>			</div>			<div class="row block shadow step">
+										<span class="circle" id="step247num">3</span><span class="steptitle" id="step247title"> Drag [Future Value] onto the horizontal/x-axis of the visualization.</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">This is a shortcut to allow multiple measures to share the same axis.</span></div>			<br/><img src="imgs/1.22.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step248num">4</span><span class="steptitle" id="step248title"> Drag [Measure Names] onto the Color Marks card. </span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/1.23.png" />			</div>		</div>
+							<!-- End php step loop -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		</body>
+		</html>
+		

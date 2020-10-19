@@ -1,0 +1,109 @@
+
+		<!DOCTYPE html>
+		<head>
+		<title>Data Prep for Data Rockstars</title>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/script.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		</head>
+		<body onscroll="OnScroll()">
+		<div class="container-fluid" style="height:100%;">
+			<!-- Top padding -->
+			<div class="row toppad"></div>
+			<div class="row" id="hdhd">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head">
+							<span class="title">
+							<img src="imgs/lockupsmall_darkblue.png" class="title"/> <a href="../welcome.html">Data Prep for Data Rockstars</a>
+							</span>
+							<div class="navnp"><a href="saveandshare_149.html">next <span class="fa fa-angle-right"></span> </a></div>
+							<div class="navnp"><a href="dashboard2airbnbprices_298.html"><span class="fa fa-angle-left"></span> previous </a><span id="bothnp"> | </span></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row" id="hiddenspacer" style="display:none;">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head" style="margin-bottom:20px;">
+							<h1>&nbsp;</h1>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+			<!-- Start of content -->
+				<div class="row">
+					<!-- Side navigation -->
+					<div class="col-xs-3" style="padding:0px">
+						<div class="col-xs-12 block nav">
+						<div class="col-xs-12">		<div class="row sec" id="sec99">
+								<div class="sectitle"><h3>Connecting to Your Data</h3></div><a href="datainterpreter_143.html" class="seclist">Data Interpreter</a><br/><a href="worksheet1listingsbyzip_292.html" class="seclist">Worksheet 1: Listings by Zip</a><br/>		</div>		<div class="row sec" id="sec100">
+								<div class="sectitle"><h3>Preparing Your Data</h3></div><a href="split_144.html" class="seclist">Split</a><br/><a href="worksheet2listingsatlatlong_294.html" class="seclist">Worksheet 2: Listings at Lat Long</a><br/><a href="crossdatabasejoin_145.html" class="seclist">Cross Database Join</a><br/><a href="worksheet3totalreviews_295.html" class="seclist">Worksheet 3: Total Reviews</a><br/><a href="union_146.html" class="seclist">Union</a><br/><a href="dashboard1listingreviews_296.html" class="seclist">Dashboard 1: Listing Reviews</a><br/><a href="pivot_147.html" class="seclist">Pivot</a><br/><a href="worksheet4dateparse_305.html" class="seclist">Worksheet 4: Dateparse</a><br/><a href="worksheet5medianhomepricesrates_297.html" class="seclist">Worksheet 5: Median Home Prices & Rates</a><br/><a href="dashboard2airbnbprices_298.html" class="seclist">Dashboard 2:  AirBNB Prices</a><br/>		</div>		<div class="row sec" id="sec101">
+								<div class="sectitle"><h3>Editing Metadata</h3></div><a href="fieldnamesandproperties_148.html" class="seclist curchal">Field Names and Properties</a><br/><a href="saveandshare_149.html" class="seclist">Save and Share </a><br/>		</div>		<br/>
+						</div>
+						</div>
+					</div>
+					<!-- Challenges and steps -->
+					<div class="col-xs-9 cont">
+						<div class="col-xs-12">
+							<div class="row current block shadow">
+								<span class="currenttitle">
+									Field Names and Properties
+									<input class="btn btn-default switch" type="button" onClick="showHide();" id ="switch" value="View Solution">
+								</span>
+							</div>
+							<div id="challenge"  style="display:block;">
+								<div class="row block shadow step">
+								<font size="5">Throughout the session we have been adding data through joins and unions, merging fields, renaming fields, and creating calculations.&nbsp;</font><div><font size="5"><br></font><div><font size="5">All of these steps have been taken us closer to a final model of our data that is specially prepared for analysis. We can share this data model with others, but first let's make some final modifications to the metadata model.</font></div><div><font size="5"><br></font></div><div><font size="5">Let's hide some unused fields, rename others, and set some default properties.</font></div><div><br></div><div><br><div><img src="imgs/fields1.JPG"></div></div></div>
+								</div>
+							</div>
+							<!-- Start php step loop -->
+							<div id="solution"  style="display:none;">			<div class="row block shadow step">
+										<span class="circle" id="step1217num">1</span><span class="steptitle" id="step1217title"> Hide unused fields from any sheet</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"><br>
+<li>Return to any of our sheets<br>
+<li>Hide all unused fields<br>
+<br>
+By hiding fields, we can disallow our analysts from using certain fields in the data set. This might be for security reasons, or because those fields aren’t useful to our analysts. 
+<br><br>
+There are a few fields in this data that our analysts won’t need to use--like Lat, Long and Month-Year. These fields weren’t automatically hidden because they are being used in calculations. Remember: Earlier, we created better versions of these fields that should be used in the analysis. 
+<li>Right click and Hide lat, long and Month-Year fields now<br>
+<br></span></div>			<br/><img src="imgs/metadataprep1.1.gif" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1985num">2</span><span class="steptitle" id="step1985title"> Create folders</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">Since we prepared the data, we know which fields came from the AirBNB data and which fields came from the Median Home Price data. It’s important that our analyst knows this so they don’t mistakenly try to view Median Home Price by Neighbourhood. Remember the Median Home Price data is by zipcode, not neighbourhood.<br>
+<br>
+<li>Right click in the white space, Group by Folder<br>
+<li>Create a folder, name it AirBnB<br>
+<li>Add the AirBNB related fields to the folder<br>
+<li>Create a folder, name it Median Home Prices<br>
+<li>Add the Median Home Prices fields to the folder<br>
+<li>Repeat this for the measures (or dimensions, if you just did the measures)<br>
+<br></span></div>			<br/><img src="imgs/metadataprep2.1.gif" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1986num">3</span><span class="steptitle" id="step1986title"> Rename fields and set default properties</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"><br>Now, let’s rename some of these fields: <br>
+<li>Rename Price to Listing Rate<br>
+<li>Rename id to Listing ID<br>
+<li>Rename review_scores_rating to Review Score Rating<br>
+<br>
+We have some fields that represent dollar amounts and should always be shown as a Currency format. 
+<li>Set default number format properties for Listing Rating and Median Home Price to Currency. Right click --> Default Properties --> Number Format</span></div>			<br/><img src="imgs/metadataprep3.1.gif" />			</div>		</div>
+							<!-- End php step loop -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		</body>
+		</html>
+		

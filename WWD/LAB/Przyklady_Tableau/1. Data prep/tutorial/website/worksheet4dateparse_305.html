@@ -1,0 +1,91 @@
+
+		<!DOCTYPE html>
+		<head>
+		<title>Data Prep for Data Rockstars</title>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/script.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		</head>
+		<body onscroll="OnScroll()">
+		<div class="container-fluid" style="height:100%;">
+			<!-- Top padding -->
+			<div class="row toppad"></div>
+			<div class="row" id="hdhd">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head">
+							<span class="title">
+							<img src="imgs/lockupsmall_darkblue.png" class="title"/> <a href="../welcome.html">Data Prep for Data Rockstars</a>
+							</span>
+							<div class="navnp"><a href="worksheet5medianhomepricesrates_297.html">next <span class="fa fa-angle-right"></span> </a></div>
+							<div class="navnp"><a href="pivot_147.html"><span class="fa fa-angle-left"></span> previous </a><span id="bothnp"> | </span></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row" id="hiddenspacer" style="display:none;">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head" style="margin-bottom:20px;">
+							<h1>&nbsp;</h1>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+			<!-- Start of content -->
+				<div class="row">
+					<!-- Side navigation -->
+					<div class="col-xs-3" style="padding:0px">
+						<div class="col-xs-12 block nav">
+						<div class="col-xs-12">		<div class="row sec" id="sec99">
+								<div class="sectitle"><h3>Connecting to Your Data</h3></div><a href="datainterpreter_143.html" class="seclist">Data Interpreter</a><br/><a href="worksheet1listingsbyzip_292.html" class="seclist">Worksheet 1: Listings by Zip</a><br/>		</div>		<div class="row sec" id="sec100">
+								<div class="sectitle"><h3>Preparing Your Data</h3></div><a href="split_144.html" class="seclist">Split</a><br/><a href="worksheet2listingsatlatlong_294.html" class="seclist">Worksheet 2: Listings at Lat Long</a><br/><a href="crossdatabasejoin_145.html" class="seclist">Cross Database Join</a><br/><a href="worksheet3totalreviews_295.html" class="seclist">Worksheet 3: Total Reviews</a><br/><a href="union_146.html" class="seclist">Union</a><br/><a href="dashboard1listingreviews_296.html" class="seclist">Dashboard 1: Listing Reviews</a><br/><a href="pivot_147.html" class="seclist">Pivot</a><br/><a href="worksheet4dateparse_305.html" class="seclist curchal">Worksheet 4: Dateparse</a><br/><a href="worksheet5medianhomepricesrates_297.html" class="seclist">Worksheet 5: Median Home Prices & Rates</a><br/><a href="dashboard2airbnbprices_298.html" class="seclist">Dashboard 2:  AirBNB Prices</a><br/>		</div>		<div class="row sec" id="sec101">
+								<div class="sectitle"><h3>Editing Metadata</h3></div><a href="fieldnamesandproperties_148.html" class="seclist">Field Names and Properties</a><br/><a href="saveandshare_149.html" class="seclist">Save and Share </a><br/>		</div>		<br/>
+						</div>
+						</div>
+					</div>
+					<!-- Challenges and steps -->
+					<div class="col-xs-9 cont">
+						<div class="col-xs-12">
+							<div class="row current block shadow">
+								<span class="currenttitle">
+									Worksheet 4: Dateparse
+									<input class="btn btn-default switch" type="button" onClick="showHide();" id ="switch" value="View Solution">
+								</span>
+							</div>
+							<div id="challenge"  style="display:block;">
+								<div class="row block shadow step">
+								<font size="5">Our pivoted data now has a usable date field--however, it is being recognized as a string (Abc) field where it should be a date type field.&nbsp;</font><div><font size="5"><br></font></div><div><font size="5"><img src="imgs/1.JPG"><br></font><div><font size="5"><br></font></div><div><font size="5">We cannot simply convert the field type to a Date type because the format of this date is Month-Year (e.g., Apr-12).&nbsp;</font></div><div><font size="5"><br></font></div><div><font size="5">Let's use a dateparse function to convert the string to a date then build the chart below.<br></font><div><font size="5"><br></font></div><div><font size="5"><br></font></div><div><font size="5"><img src="imgs/sheetdateparse1.JPG"></font></div></div></div>
+								</div>
+							</div>
+							<!-- Start php step loop -->
+							<div id="solution"  style="display:none;">			<div class="row block shadow step">
+										<span class="circle" id="step1033num">1</span><span class="steptitle" id="step1033title"> Create calculated field</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"><li>First, convert the Data Type of both zipcode fields to a String<br>
+<li>Next, create the calculation<br>
+<li>The first parameter of the function should be the format of your date field ("Apr-12" is "MMM-yy")<br></span></div>			<br/><img src="imgs/datecalcbuild2.gif" />			<br/><blockquote><p class="calc">dateparse("MMM-yy", <span class="orange">[Month-Year]</span>)</p></blockquote>			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1195num">2</span><span class="steptitle" id="step1195title"> With the Month-Year now converted to a date field. We can visualize the Median Prices over time for each zipcode.</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"><li>Add the Median Home Price Date field to Columns, set to Month (continuous)<br>
+<li>Add Median Home Price to Rows, aggregate to Minimum<br>
+<li>Add Zipcode to Detail<br>
+<li>Add Number of Records to Size and Color<br>
+<li>Set the color and adjust the size<br></span></div>			<br/><img src="imgs/builddateparse.gif" />			</div>		</div>
+							<!-- End php step loop -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		</body>
+		</html>
+		

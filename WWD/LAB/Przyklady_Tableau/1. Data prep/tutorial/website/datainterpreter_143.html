@@ -1,0 +1,88 @@
+
+		<!DOCTYPE html>
+		<head>
+		<title>Data Prep for Data Rockstars</title>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/script.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		</head>
+		<body onscroll="OnScroll()">
+		<div class="container-fluid" style="height:100%;">
+			<!-- Top padding -->
+			<div class="row toppad"></div>
+			<div class="row" id="hdhd">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head">
+							<span class="title">
+							<img src="imgs/lockupsmall_darkblue.png" class="title"/> <a href="../welcome.html">Data Prep for Data Rockstars</a>
+							</span>
+							<div class="navnp"><a href="worksheet1listingsbyzip_292.html">next <span class="fa fa-angle-right"></span> </a></div>
+							<div class="navnp"><a href=".html"> </a><span id="bothnp">  </span></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row" id="hiddenspacer" style="display:none;">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head" style="margin-bottom:20px;">
+							<h1>&nbsp;</h1>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+			<!-- Start of content -->
+				<div class="row">
+					<!-- Side navigation -->
+					<div class="col-xs-3" style="padding:0px">
+						<div class="col-xs-12 block nav">
+						<div class="col-xs-12">		<div class="row sec" id="sec99">
+								<div class="sectitle"><h3>Connecting to Your Data</h3></div><a href="datainterpreter_143.html" class="seclist curchal">Data Interpreter</a><br/><a href="worksheet1listingsbyzip_292.html" class="seclist">Worksheet 1: Listings by Zip</a><br/>		</div>		<div class="row sec" id="sec100">
+								<div class="sectitle"><h3>Preparing Your Data</h3></div><a href="split_144.html" class="seclist">Split</a><br/><a href="worksheet2listingsatlatlong_294.html" class="seclist">Worksheet 2: Listings at Lat Long</a><br/><a href="crossdatabasejoin_145.html" class="seclist">Cross Database Join</a><br/><a href="worksheet3totalreviews_295.html" class="seclist">Worksheet 3: Total Reviews</a><br/><a href="union_146.html" class="seclist">Union</a><br/><a href="dashboard1listingreviews_296.html" class="seclist">Dashboard 1: Listing Reviews</a><br/><a href="pivot_147.html" class="seclist">Pivot</a><br/><a href="worksheet4dateparse_305.html" class="seclist">Worksheet 4: Dateparse</a><br/><a href="worksheet5medianhomepricesrates_297.html" class="seclist">Worksheet 5: Median Home Prices & Rates</a><br/><a href="dashboard2airbnbprices_298.html" class="seclist">Dashboard 2:  AirBNB Prices</a><br/>		</div>		<div class="row sec" id="sec101">
+								<div class="sectitle"><h3>Editing Metadata</h3></div><a href="fieldnamesandproperties_148.html" class="seclist">Field Names and Properties</a><br/><a href="saveandshare_149.html" class="seclist">Save and Share </a><br/>		</div>		<br/>
+						</div>
+						</div>
+					</div>
+					<!-- Challenges and steps -->
+					<div class="col-xs-9 cont">
+						<div class="col-xs-12">
+							<div class="row current block shadow">
+								<span class="currenttitle">
+									Data Interpreter
+									<input class="btn btn-default switch" type="button" onClick="showHide();" id ="switch" value="View Solution">
+								</span>
+							</div>
+							<div id="challenge"  style="display:block;">
+								<div class="row block shadow step">
+								<div><span style="line-height: 17.5px;"><font size="5"><i>Sometimes, the format of the data in your Microsoft Excel or Google Sheets makes it difficult to analyze in Tableau. For example, your data might include sub-tables, hierarchical headers, extraneous headers and footers, or blank rows and columns. The Data Interpreter draws out sub-tables and removes some of that extraneous information to help prepare the data source for analysis.</i></font></span></div><div><span style="line-height: 16.8px;"><font size="5"><br></font></span></div><div><font size="5"><span style="line-height: 16.8px;">Connect to the&nbsp;</span><span id="docs-internal-guid-fcce2fd4-b346-5adb-4c87-c03f16d65263"><span style="vertical-align: baseline;">Austin AirBNB Listings.xlsx</span></span><span style="line-height: 16.8px;">&nbsp;Excel data set and turn on the Data</span><span style="line-height: 16.8px;">&nbsp;Interpreter.&nbsp;</span><span style="line-height: 16.8px;">If you’d like to see how Tableau cleaned up your data, select “</span><span style="line-height: 16.8px;">Review the results.</span><span style="line-height: 16.8px;">”</span></font></div><div><span style="line-height: 16.8px;"><br></span></div><div><br></div>
+								</div>
+							</div>
+							<!-- Start php step loop -->
+							<div id="solution"  style="display:none;">			<div class="row block shadow step">
+										<span class="circle" id="step212num">1</span><span class="steptitle" id="step212title"> Connect to data</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/01connect.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step213num">2</span><span class="steptitle" id="step213title"> Turn on the Data Interpreter</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/01datainterpreter.png" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step545num">3</span><span class="steptitle" id="step545title"> Check the box</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">If you’d like to see how Tableau cleaned up your data, select “Review the results.”
+</span></div>			<br/><img src="imgs/01reviewresults.png" />			</div>		</div>
+							<!-- End php step loop -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		</body>
+		</html>
+		

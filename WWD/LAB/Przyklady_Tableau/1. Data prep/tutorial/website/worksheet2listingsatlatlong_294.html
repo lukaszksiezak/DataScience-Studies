@@ -1,0 +1,89 @@
+
+		<!DOCTYPE html>
+		<head>
+		<title>Data Prep for Data Rockstars</title>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/script.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		</head>
+		<body onscroll="OnScroll()">
+		<div class="container-fluid" style="height:100%;">
+			<!-- Top padding -->
+			<div class="row toppad"></div>
+			<div class="row" id="hdhd">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head">
+							<span class="title">
+							<img src="imgs/lockupsmall_darkblue.png" class="title"/> <a href="../welcome.html">Data Prep for Data Rockstars</a>
+							</span>
+							<div class="navnp"><a href="crossdatabasejoin_145.html">next <span class="fa fa-angle-right"></span> </a></div>
+							<div class="navnp"><a href="split_144.html"><span class="fa fa-angle-left"></span> previous </a><span id="bothnp"> | </span></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row" id="hiddenspacer" style="display:none;">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head" style="margin-bottom:20px;">
+							<h1>&nbsp;</h1>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+			<!-- Start of content -->
+				<div class="row">
+					<!-- Side navigation -->
+					<div class="col-xs-3" style="padding:0px">
+						<div class="col-xs-12 block nav">
+						<div class="col-xs-12">		<div class="row sec" id="sec99">
+								<div class="sectitle"><h3>Connecting to Your Data</h3></div><a href="datainterpreter_143.html" class="seclist">Data Interpreter</a><br/><a href="worksheet1listingsbyzip_292.html" class="seclist">Worksheet 1: Listings by Zip</a><br/>		</div>		<div class="row sec" id="sec100">
+								<div class="sectitle"><h3>Preparing Your Data</h3></div><a href="split_144.html" class="seclist">Split</a><br/><a href="worksheet2listingsatlatlong_294.html" class="seclist curchal">Worksheet 2: Listings at Lat Long</a><br/><a href="crossdatabasejoin_145.html" class="seclist">Cross Database Join</a><br/><a href="worksheet3totalreviews_295.html" class="seclist">Worksheet 3: Total Reviews</a><br/><a href="union_146.html" class="seclist">Union</a><br/><a href="dashboard1listingreviews_296.html" class="seclist">Dashboard 1: Listing Reviews</a><br/><a href="pivot_147.html" class="seclist">Pivot</a><br/><a href="worksheet4dateparse_305.html" class="seclist">Worksheet 4: Dateparse</a><br/><a href="worksheet5medianhomepricesrates_297.html" class="seclist">Worksheet 5: Median Home Prices & Rates</a><br/><a href="dashboard2airbnbprices_298.html" class="seclist">Dashboard 2:  AirBNB Prices</a><br/>		</div>		<div class="row sec" id="sec101">
+								<div class="sectitle"><h3>Editing Metadata</h3></div><a href="fieldnamesandproperties_148.html" class="seclist">Field Names and Properties</a><br/><a href="saveandshare_149.html" class="seclist">Save and Share </a><br/>		</div>		<br/>
+						</div>
+						</div>
+					</div>
+					<!-- Challenges and steps -->
+					<div class="col-xs-9 cont">
+						<div class="col-xs-12">
+							<div class="row current block shadow">
+								<span class="currenttitle">
+									Worksheet 2: Listings at Lat Long
+									<input class="btn btn-default switch" type="button" onClick="showHide();" id ="switch" value="View Solution">
+								</span>
+							</div>
+							<div id="challenge"  style="display:block;">
+								<div class="row block shadow step">
+								<font size="5">Now that we have a Latitude and Longitude, we can visualize each listing location on a map. Try to create this map using Latitude, Longitude, ID, and color by Average Review Score Rating.</font><div><font size="5"><br></font><div><font size="5"><img src="imgs/listingidmap.JPG"></font></div></div>
+								</div>
+							</div>
+							<!-- Start php step loop -->
+							<div id="solution"  style="display:none;">			<div class="row block shadow step">
+										<span class="circle" id="step698num">1</span><span class="steptitle" id="step698title"> Create the map and color IDs by Rating</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">•	Bring Latitude and Longitude into the view using right-click drag to get the 'Drop Field' pop-up. This shortcut allows me to quickly specify how I want to aggregate the field. <br>
+•	Bring “id” to the Detail shelf on the Marks card, exclude the data point in Spain<br>
+•	Change the mark size to a bit smaller from the Size on the Marks card<br>
+•	Right click drag “review_scores_rating” to the Color shelf, select AVG as the aggregation<br>
+•	Double click the color legend that appears to change the color palette > Select Red Blue Diverging, select OK<br>
+•	Add the following Map Layers: Streets and Highways, Place Names<br>
+</span></div>			<br/><img src="imgs/createidmap.gif" />			</div>		</div>
+							<!-- End php step loop -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		</body>
+		</html>
+		

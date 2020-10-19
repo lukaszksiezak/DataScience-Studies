@@ -1,0 +1,327 @@
+#DataScience - datamining sem 2019z lab 1b
+
+#Temat: Odkrywanie reguł asocjacyjnych
+
+#ustawienie katalogu roboczego
+setwd('/home/elektron/d/70/gprotazi/DS2019z');
+
+#ładowanie bibiliotek
+library(arules) #reguły asocjacyjne
+library(arulesViz) # wizualizacja reguł
+
+#zbiór danych AdultUCI jest dostępny w bibliotece arules
+#https://archive.ics.uci.edu/ml/datasets/Adult
+data("AdultUCI")
+dim(AdultUCI)
+
+######################################
+#przetwarzanie danych
+
+#statystyki dotyczące datych
+summary(AdultUCI)
+#przykładowe rekordy - pierwszych 10
+head(AdultUCI,10)
+
+
+summary(AdultUCI)
+#dyskretyzacja przy użyciu funkcji discretize z pakietu arules
+?discretize
+discInterval = discretize(AdultUCI$age, method ='interval', breaks = 4)
+summary(discInterval)
+
+discFreq = discretize(AdultUCI$age, method= 'frequency', breaks = 4)
+summary(discFreq);
+
+#dane numeryczne
+discFreq = discretize(AdultUCI$fnlwgt, method= 'frequency', breaks = 4)
+summary(discFreq);
+
+
+#dyskretyzacja atrybutów ciągłych przy użyciu funkcji cut
+#?ordered
+
+AdultUCI[[ "age"]] <- ordered(cut(AdultUCI[[ "age"]], c(15,25,45,65,100)), labels = c("Young", "Middle-aged", "Senior", "Old"))
+
+AdultUCI[[ "hours-per-week"]] <- ordered(cut(AdultUCI[[ "hours-per-week"]],c(0,25,40,60,168)),
+                                         labels = c("Part-time", "Full-time", "Over-time", "Workaholic"))
+
+AdultUCI[[ "capital-gain"]] <- ordered(cut(AdultUCI[[ "capital-gain"]], c(-Inf,0,median(AdultUCI[[ "capital-gain"]][AdultUCI[[ "capital-gain"]]>0]),Inf)), labels = c("None", "Low", "High"))
+
+AdultUCI[[ "capital-loss"]] <- ordered(cut(AdultUCI[[ "capital-loss"]],
+                                           c(-Inf,0, median(AdultUCI[[ "capital-loss"]][AdultUCI[[ "capital-loss"]]>0]),Inf)),
+                                       labels = c("none", "low", "high"))
+
+summary(AdultUCI)
+
+#usunięcie zbędnych atrybutów
+AdultUCI[["fnlwgt"]] <- NULL
+AdultUCI[["fnlwgt"]]
+
+AdultUCI[["education-num"]] <-NULL
+
+#konwersja danych z postacji relacyjnej (data.frame) na transakcyjną (transactions)
+#?as
+adultTR <- as(AdultUCI, "transactions")
+#informacja dotyczące struktury obiektu transakcje
+#str(adultTR)
+#class(adultTR)
+#statystyki dotyczące danych
+summary(adultTR)
+length(which(is.na(AdultUCI)==T))
+
+######################################
+#wstępna analiza danych transakcyjnych
+
+#częstość występowania elementów
+?itemFrequency
+freqTbl  = itemFrequency(adultTR, type = "relative")
+str(freqTbl)
+#class(freqTbl)
+summary(freqTbl)
+print(freqTbl)
+
+#sortowanie elementów wg wsparcia względnego
+#?sort
+freqTbl = sort(freqTbl, decreasing= TRUE)
+
+#pokazanie elementów ze wsparciem > 20%
+print(freqTbl[freqTbl>0.2])
+
+#liczba elementów ze wspaciem >= 5%
+length(freqTbl[freqTbl>=0.05])
+
+#wykres
+#?itemFrequencyPlot
+itemFrequencyPlot(adultTR, type ="relative", support= 0.2)
+
+#################################################
+# Wykrywanie zbiorów częstych
+#parametry funkcji apriori
+?APparameter
+aParam  = new("APparameter", "confidence" = 0.6, "support" =0.5, "minlen"= 1, maxtime = 20) 
+print(aParam)
+#korekta wartości parametrów
+aParam@support <- 0.3
+aParam@confidence <-0.8
+aParam@target ="frequent itemsets"
+
+
+#wykrywanie zbiorów częstych - funkcja apriori
+?apriori
+asets <-apriori(adultTR,aParam)
+str(asets)
+#analiza wykrytych zbiorów częstych
+length(asets)
+summary(asets)
+#?inspect
+inspect(head(sort(asets, by="support"),10))
+
+size(asets)
+inspect(asets[size(asets)>5])
+#grafika
+#plot(asets[1:10])
+plot(asets[size(asets)>5], method = "graph")
+plot(asets[size(asets)>4], method = "paracoord", control = list(reorder = TRUE))
+
+#wyszukiwanie zbiorów zawierających zadany element(tekst)
+?subset
+setsRace <- subset(asets, subset = items %pin% "race")
+inspect(setsRace)
+
+setsRace <- subset(asets, subset = items %in% "race")
+
+setsRace <- subset(asets, subset = items %ain% c("race=White","sex=Male"))
+inspect(setsRace)
+?is.closed
+#zbiory zamknięte
+is.closed(asets)
+#zbiory maksymalne
+?is.maximal
+maxSets <- asets[is.maximal(asets)==TRUE]
+inspect(maxSets)
+summary(maxSets)
+
+
+#wykrywanie zbiorów częstych - funkcja eclat
+#parametry
+ecParam  = new("ECparameter", "confidence" = 0.8, "support" = 0.3) 
+print(ecParam)
+
+#wykorzystanie funkcji eclat do wykrycia zbiorów częstych 
+fsets <- eclat(adultTR,ecParam)
+length(fsets)
+
+#seleckcja zbiorów wykrytych przy użyciu funkcji eclat, a nie wykrytych przy użyciu funkcji apriori
+inspect(fsets[which(!(fsets %in% asets))])
+fsets[which(!(fsets %in% asets))]
+
+
+#zmiana wartości paramaterów
+ecParam@support = 0.4
+print(ecParam)
+
+#wykorzystanie funkcji eclat do wykrycia zbiorów częstych - zmienione wartości paramatrów
+fsets <- eclat(adultTR,ecParam)
+length(fsets)
+
+#seleckcja zbiorów wykrytych przy użyciu funkcji apriori, a nie wykrytych przy użyciu funkcji eclat
+inspect(asets[which(!(asets %in% fsets))])
+
+#################################################
+#Wykrywanie reguł asocjacyjnych
+#ustawienie parametrów
+aParam@target ="rules"
+aParam@minlen = 2L
+aParam@confidence =0.8
+
+print(aParam)
+
+#użycie funkcji apriori do wykrycia reguł asocjacyjnych
+aRules <-apriori(adultTR,aParam)
+#statystyka dotycząca reguł
+summary(aRules)
+length(aRules)
+str(aRules)
+#przykładowe reguły
+inspect(head(aRules))
+
+plot(aRules, measure = c("support", "lift"), shading = "confidence")
+plot(aRules, method = "matrix", engine = '3d')
+
+# wykrycie reguł z zadanym następnikiem
+rulesWithRHS <- apriori(adultTR, parameter = list(support=0.2, confidence = 0.5, minlen =2), 
+                        appearance = list(rhs = c("capital-gain=None", "capital-loss=none"), default="lhs"))
+inspect(rulesWithRHS[1:10])
+
+# wykrycie reguł, które nie zawierają zadanych elementów 
+rulesNotItems <- apriori(adultTR, parameter = list(support=0.2, confidence = 0.5, minlen = 2), 
+                         appearance = list(none = c("capital-gain=None", "capital-loss=none"), default="both"))
+inspect(rulesNotItems[1:10])
+
+#filtrowanie reguł - wybór reguł interesujących
+#reguły, dla których wartość parametru lift  >1.2
+rulesLift1.2 <- subset(aRules, subset =  lift > 1.2)
+inspect(head(rulesLift1.2,1))
+
+#grafika prezentująca wybrane regułu
+#size(rulesLift1.2)
+
+plot(rulesLift1.2, shading="order", control=list(main = "Two-key plot" ))
+plot(rulesLift1.2, method="matrix", measure="lift", engine = 'interactive')
+
+#wybór reguł z zadanym następnikiem
+rulesInGivenConseq<- subset(aRules, subset = rhs %in% "relationship=Husband" & lift >=2.3)
+inspect(rulesInGivenConseq)
+
+#reguły oparte o częste zbiory maksymalne
+maxRul <- aRules[is.maximal(aRules) == TRUE]
+summary(maxRul)
+inspect(maxRul[1:10])
+
+#usunięcie reguł nadmiarowych (dla których istnieje prostsza reguła, która ma wsparcie taki sam następnik i niemniejsze zaufanie)
+notRedun <- aRules[is.redundant(aRules) == TRUE]
+summary(notRedun)
+inspect(notRedun[1:10])
+
+#wybór reguł na podstawie wybranego wskaźka jak bardzo dana reguła jest interesująca
+?interestMeasure
+#reguły dla których współczynnik poprawy jest większy od 0,01
+resTbl <- interestMeasure(aRules,"improvement", asets)
+intres <- which(sapply(resTbl, function(x) {x > 0.01  && x <= 1 })==TRUE)
+
+intersRule <- aRules[intres] 
+inspect(intersRule)
+
+#################################################
+#Generowanie reguł na podstawie wcześniej utworzonego zbioru zbiorów częstych
+?ruleInduction
+
+ecParam  = new("ECparameter", "confidence" = 0.8, "support" =0.3) 
+#wykrywanie zbiorów częstych
+fsets <- eclat(adultTR,ecParam)
+#generowanie reguł
+iERules = ruleInduction(fsets, adultTR, confidence = 0.8,control=list(method ="ptree"))
+
+#statystyki dotyczące reguł
+summary(iERules)
+length(iERules)
+inspect(head(iERules))
+
+########################################################################################
+#Wykorzystanie hierarchii elementów do odkrywania reguł asoscjacyjnych
+
+data("Groceries")
+str(Groceries)
+View(Groceries@itemInfo)
+
+#Hierarchia jest zapisana w składowej iteminfo 
+#level2 - pierwszy poziom hierarchii
+#level1 - drugi poziom hierarchii
+
+#utworzenie transakcji zawierających elementy z pierwszego poziomu hierarchii
+?aggregate
+grocTlevel1<- aggregate(Groceries, by = "level2")
+summary(grocTlevel1)
+
+## porównanie orygianalnych transkacji z transakcjami po agregacji
+for( i in 1:10)
+{
+  inspect(Groceries[i])
+  inspect(grocTlevel1[i])
+  cat('\n')
+}
+
+#wykrywanie reguł z danych oryginalnych
+rulesBasic <- apriori(Groceries, parameter=list(supp=0.01, conf=0.5, minlen=2))
+summary(rulesBasic)
+inspect(head(rulesBasic,15))
+
+#agregacja reguł
+rulesBasicAgg <- aggregate(rulesBasic, by = "level2")
+summary(rulesBasicAgg)
+inspect(head(rulesBasicAgg,10))
+
+#wykrywanie reguł z danych po agregacji 
+rulesAgg <- apriori(grocTlevel1, parameter=list(supp=0.01, conf=0.5, minlen=2))
+summary(rulesAgg)
+inspect(head(rulesAgg,10))
+#reguły 5 elementowe
+rulesAgg5 = rulesAgg[size(rulesAgg)>4] 
+size(rulesAgg5)
+
+inspect(head(rulesAgg5,10))
+
+#wykrywanie reguł dotyczących wielu poziomów
+?addAggregate
+#poziom1
+grocHier <- addAggregate(Groceries, "level2") 
+summary(grocHier)
+inspect(head(grocHier,30))
+View(grocHier@itemInfo)
+
+#dodanie poziomu nr 2
+hLevel2 <- paste0(grocHier@itemInfo$level1, "_l2")  #zmiana nazwy elementów na 2 poziomie hierarchii.
+grocHier@itemInfo$myH <- as.factor(hLevel2)
+
+grocTFullHier <- addAggregate(grocHier, "myH") 
+View(grocTFullHier@itemInfo)
+
+#odkrywanie reguł
+rulesAggFH <- apriori(grocTFullHier, parameter=list(supp=0.01, conf=0.5, minlen=2)) 
+summary(rulesAggFH)
+
+rulesAggFH <- apriori(grocTFullHier, parameter=list(supp=0.1, conf=0.5, minlen=2)) 
+summary(rulesAggFH)
+inspect(rulesAggFH[300:320])
+
+#usuwanie reguł potencjalnie nadmiarowych typu element -> poziom_X_hierarchii(element)
+rulesAggFH_Filter <- filterAggregate(rulesAggFH)
+summary(rulesAggFH_Filter)
+inspect(rulesAggFH[70:95])
+
+
+#################################################
+#ZADANIE: Odkrywanie reguł asocjacyjnych w zbiorze AdultUCI, Groceries
+# analiza wpływu sposobu przetwarzania wstępnego (np. dyskretyzacji,zastosowanie hierachii) na wyniki
+# analiza wpływu zmiany wartości parametrów na wyniki
+#################################################

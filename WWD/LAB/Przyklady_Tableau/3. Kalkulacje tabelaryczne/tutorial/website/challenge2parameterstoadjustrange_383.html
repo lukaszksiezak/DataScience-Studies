@@ -1,0 +1,118 @@
+
+		<!DOCTYPE html>
+		<head>
+		<title>Intro to Table Calculations</title>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/script.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		</head>
+		<body onscroll="OnScroll()">
+		<div class="container-fluid" style="height:100%;">
+			<!-- Top padding -->
+			<div class="row toppad"></div>
+			<div class="row" id="hdhd">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head">
+							<span class="title">
+							<img src="imgs/lockupsmall_lightblue.png" class="title"/> <a href="../welcome.html">Intro to Table Calculations</a>
+							</span>
+							<div class="navnp"><a href="groupexercisewhatarethehighestrankedtweetsbasedonthenumberoffavourites_320.html">next <span class="fa fa-angle-right"></span> </a></div>
+							<div class="navnp"><a href="challenge1twittertrends_381.html"><span class="fa fa-angle-left"></span> previous </a><span id="bothnp"> | </span></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row" id="hiddenspacer" style="display:none;">
+				<div class="col-xs-12">
+
+					<div class="col-xs-12">
+						<div class="row block" id="head" style="margin-bottom:20px;">
+							<h1>&nbsp;</h1>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+			<!-- Start of content -->
+				<div class="row">
+					<!-- Side navigation -->
+					<div class="col-xs-3" style="padding:0px">
+						<div class="col-xs-12 block nav">
+						<div class="col-xs-12">		<div class="row sec" id="sec137">
+								<div class="sectitle"><h3>Running Total</h3></div><a href="groupexercisewhowasthefastestto500homeruns_245.html" class="seclist">Group Exercise: Who was the fastest to 500 home runs?</a><br/>		</div>		<div class="row sec" id="sec138">
+								<div class="sectitle"><h3>Percent of Total</h3></div><a href="groupexercisewhatpercentofeachdemographicdefaultedontheircreditcard_246.html" class="seclist">Group Exercise: What percent of each demographic defaulted on their credit card?</a><br/><a href="challenge1whohadahigherpercentageoftweetssentfromaniphonetheunitedstatesorunited_247.html" class="seclist">Challenge 1: Who had a higher percentage of tweets sent from an iPhone? The United States, or United</a><br/><a href="challenge2theysayaprilshowersbringmayflowers.isittrue_248.html" class="seclist">Challenge 2: They say "April showers bring May flowers". Is it true?</a><br/>		</div>		<div class="row sec" id="sec139">
+								<div class="sectitle"><h3>Percent Difference</h3></div><a href="groupexercisewhichindexperformedbetter_268.html" class="seclist">Group Exercise: Which Index performed better?</a><br/><a href="challenge1biggestjumpindow_269.html" class="seclist">Challenge 1: Biggest jump in Dow</a><br/><a href="challenge2spoutperformsdow_270.html" class="seclist">Challenge 2: S&P Outperforms Dow </a><br/>		</div>		<div class="row sec" id="sec200">
+								<div class="sectitle"><h3>Moving Average</h3></div><a href="groupexerciseaveragetemperatureinaustin_378.html" class="seclist">Group Exercise: Average temperature in Austin</a><br/><a href="challenge1twittertrends_381.html" class="seclist">Challenge 1: Twitter Trends</a><br/><a href="challenge2parameterstoadjustrange_383.html" class="seclist curchal">Challenge 2: Parameters to adjust range </a><br/>		</div>		<div class="row sec" id="sec140">
+								<div class="sectitle"><h3>Rank</h3></div><a href="groupexercisewhatarethehighestrankedtweetsbasedonthenumberoffavourites_320.html" class="seclist">Group Exercise:  What are the highest ranked tweets based on the number of favourites?</a><br/><a href="challenge1whatarethehottestdaysineachmonth_321.html" class="seclist">Challenge 1: What are the hottest days in each month?</a><br/><a href="challenge2canyoufiltertheviewfromchallenge1toonlyshowthetop5hottestdayseachmonth_322.html" class="seclist">Challenge 2: Can you filter the view from Challenge 1 to only show the Top 5 hottest days each month</a><br/>		</div>		<div class="row sec" id="sec141">
+								<div class="sectitle"><h3>Window Calculations (e.g. Window_Max())</h3></div><a href="groupexercisehowdohomerunsinrecentyearscomparetoourhomerunaverageoverallyears_346.html" class="seclist">Group Exercise: How do Home Runs in recent years compare to our Home Run Average over all years?</a><br/><a href="challenge1howmanymorehitsdidpeterosehavethantheaverageplayer_347.html" class="seclist">Challenge 1: How many more hits did Pete Rose have than the average player?</a><br/><a href="challenge2highlighttheyearsthathadthegreatestdeviationinhitsfromtheaverage._348.html" class="seclist">Challenge 2: Highlight the year(s) that had the greatest deviation in hits from the average.</a><br/>		</div>		<br/>
+						</div>
+						</div>
+					</div>
+					<!-- Challenges and steps -->
+					<div class="col-xs-9 cont">
+						<div class="col-xs-12">
+							<div class="row current block shadow">
+								<span class="currenttitle">
+									Challenge 2: Parameters to adjust range 
+									<input class="btn btn-default switch" type="button" onClick="showHide();" id ="switch" value="View Solution">
+								</span>
+							</div>
+							<div id="challenge"  style="display:block;">
+								<div class="row block shadow step">
+								<span style="font-family: &quot;Tableau Book&quot;; color: rgb(102, 102, 102);">Looking at our Dow Stock ticker data, let's overlay a Moving Average onto the Value line chart, and insert a parameter allowing us to change how many periods the Moving Average is computed over.</span>
+								</div>
+							</div>
+							<!-- Start php step loop -->
+							<div id="solution"  style="display:none;">			<div class="row block shadow step">
+										<span class="circle" id="step1083num">1</span><span class="steptitle" id="step1083title"> Set the Initial View</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">1. Bring Day(Date) (Continous) To the Columns shelf </br>
+2. Bring Index  to Rows </br>
+3. Bring Avg(Value) To Rows </br></span></div>			<br/><img src="imgs/MAC21.jpg" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1084num">2</span><span class="steptitle" id="step1084title"> Add Filters</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">1. Add index to Filters and select only the DOW </br>
+2. Add Value to Filters and increase the bottom of the range to eliminate the 0's (weekends) </br></span></div>			<br/><img src="imgs/MAC22.jpg" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1085num">3</span><span class="steptitle" id="step1085title"> Apply the Moving Average Table Calculation</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc"></span></div>			<br/><img src="imgs/MAC23.jpg" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1086num">4</span><span class="steptitle" id="step1086title"> Materialize the Calculation</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">1. Drag the Value pill with the Table Calculation applied to it down to the measures sections </br>
+2. Name it 'Moving Average' </br></span></div>			<br/><img src="imgs/MAC24.jpg" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1087num">5</span><span class="steptitle" id="step1087title"> Create  a parameter </span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">1. Select 'Create Parameter' from the Dimensions Dropdown </br>
+2. Name it "Average Over Periods' </br>
+3. Select Integer Data type </br>
+4.Select 'Range' for allowable values </br>
+5. Select "Minimum' in the Range and set it to -30 </br>
+6. Select 'Maximum' in the Range and set it to 0 </br>
+7. Click 'Ok' </br>
+</span></div>			<br/><img src="imgs/MAC25.jpg" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1088num">6</span><span class="steptitle" id="step1088title"> Edit the Moving Average Calculation</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">1. Right click on "Moving Average" in the Measures Pane</br>
+2. Select Edit </br></span></div>			<br/><img src="imgs/MAC26.jpg" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1089num">7</span><span class="steptitle" id="step1089title"> Change to Previous Value to the new Parameter</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">1. Highlight the '-2' that represents the previous values </br>
+2. Start typing 'Average Over Periods' </br>
+3. Select the value that shows up </br>
+4. A purple "[Average Over periods]" will now appear as the previous values </br></span></div>			<br/><img src="imgs/MAC27.jpg" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1090num">8</span><span class="steptitle" id="step1090title"> Show the Parameter Control</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">1. Right Click on the Average Over Periods Parameter </br>
+2. Select "Show Parameter Control" </span></div>			<br/><img src="imgs/MAC28.jpg" />			</div>			<div class="row block shadow step">
+										<span class="circle" id="step1091num">9</span><span class="steptitle" id="step1091title"> Final View</span><br/>
+										<div style="padding-left:43px;"><span class="stepdesc">Now as you adjust the parameter control the Moving Average will adjust</span></div>			<br/><img src="imgs/MAC29.jpg" />			</div>		</div>
+							<!-- End php step loop -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		</body>
+		</html>
+		
